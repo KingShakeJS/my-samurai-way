@@ -10,21 +10,8 @@
     /*gap: 10px;*/
 }
 
-.Header {
-    grid-area: h;
-    background-color: aquamarine;
-}
 
-.Header img {
-    height: 20px;
-}
 
-.Nav {
-    grid-area: n;
-    background-color: aqua;
-}
 
-.Content {
-    grid-area: c;
-    background-color: lightskyblue;
-}
+
+

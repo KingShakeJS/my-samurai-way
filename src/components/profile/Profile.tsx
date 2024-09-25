@@ -1,12 +1,12 @@
 import React from 'react';
-
+import s from './Profile.module.css'
 
 export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg'
 
 
 const Profile = () => {
     return (
-        <div className='Content'>
+        <div className={s.Content}>
             <div>
                 <img src={OBLOJKA} alt=""/>
             </div>
@@ -19,8 +19,8 @@ const Profile = () => {
                     new post
                 </div>
                 <div className='posts'>
-                    <div>Post1</div>
-                    <div>Post2</div>
+                    <div className={s.item}>Post1</div>
+                    <div className={s.item}>Post2</div>
                 </div>
             </div>
 
