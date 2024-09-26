@@ -7,7 +7,7 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 
 const Profile = () => {
     return (
-        <div className={s.Content}>
+        <div >
 
             <div>
                 <img src={OBLOJKA} alt=""/>

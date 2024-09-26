@@ -3,9 +3,10 @@ import './App.css';
 import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
+import Dialogs from "./components/dialogs/Dialogs";
 
 
-// урок 17
+// урок 19
 function App() {
 
 
@@ -18,7 +19,13 @@ function App() {
 
             <NavBar/>
 
-            <Profile/>
+            <div className={'Content'}>
+
+                {/*<Profile/>*/}
+
+                <Dialogs/>
+
+            </div>
 
 
         </div>
