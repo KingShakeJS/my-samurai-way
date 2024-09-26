@@ -7,6 +7,6 @@
     color: darkred;
 }
 
-.item.active{
+.item a.active{
     color: goldenrod;
 }
