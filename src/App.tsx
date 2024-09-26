@@ -5,7 +5,7 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 
 
-// урок 15
+// урок 17
 function App() {
 
 

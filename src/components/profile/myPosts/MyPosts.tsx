@@ -14,10 +14,20 @@ const MyPosts = () => {
             </div>
 
             <div className='posts'>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post
+                    msg={'дратути'}
+                    likes={228}
+                />
+
+                <Post
+                    msg={'дороу'}
+                    likes={1488}
+                />
+
+                <Post
+                    msg={'привет'}
+                    likes={100500}
+                />
             </div>
         </div>
     );
