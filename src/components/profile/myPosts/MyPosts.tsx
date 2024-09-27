@@ -19,7 +19,6 @@ const MyPosts = () => {
             <div>
                 <div>
                     <textarea></textarea>
-
                 </div>
                 <div>
                     <button>добавить пост</button>
@@ -27,10 +26,9 @@ const MyPosts = () => {
             </div>
 
             <div className={s.posts}>
-                <Post msg={postsData[0].msg} id={postsData[0].id} likes={postsData[0].likes}/>
-                <Post msg={postsData[1].msg} id={postsData[1].id} likes={postsData[1].likes}/>
-                <Post msg={postsData[2].msg} id={postsData[2].id} likes={postsData[2].likes}/>
-                <Post msg={postsData[3].msg} id={postsData[3].id} likes={postsData[3].likes}/>
+                {
+                    postsData.map(p => <Post msg={p.msg} id={p.id} likes={p.likes}/>)
+                }
             </div>
         </div>
     );

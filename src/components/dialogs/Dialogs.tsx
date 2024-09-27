@@ -25,18 +25,15 @@ const Dialogs = () => {
         <div className={s.Dialogs}>
 
             <div className={s.dialogsItems}>
-                <DialogItem userId={dialogsData[0].userId} userName={dialogsData[0].userName}/>
-                <DialogItem userId={dialogsData[1].userId} userName={dialogsData[1].userName}/>
-                <DialogItem userId={dialogsData[2].userId} userName={dialogsData[2].userName}/>
-                <DialogItem userId={dialogsData[3].userId} userName={dialogsData[3].userName}/>
+                {
+                    dialogsData.map(el => <DialogItem userId={el.userId} userName={el.userName}/>)
+                }
             </div>
 
             <div className={s.messages}>
-                <Msg message={messagesData[0].message} id={messagesData[0].id}/>
-                <Msg message={messagesData[1].message} id={messagesData[1].id}/>
-                <Msg message={messagesData[2].message} id={messagesData[2].id}/>
-                <Msg message={messagesData[3].message} id={messagesData[3].id}/>
-                <Msg message={messagesData[4].message} id={messagesData[4].id}/>
+                {
+                    messagesData.map(m => <Msg message={m.message} id={m.id}/>)
+                }
             </div>
 
         </div>
