@@ -1,33 +1,23 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import DialogItem from "./dialogItem/DialogItem";
+import Msg from "./msg/Msg";
 
 const Dialogs = () => {
     return (
         <div className={s.Dialogs}>
 
             <div className={s.dialogsItems}>
-                <div className={s.dialog}>
-                    <NavLink to={'/dialogs/1'} activeClassName={s.active}>Dimych1</NavLink>
-                </div>
-                <div className={`${s.dialog}`}>
-                    <NavLink to={'/dialogs/2'} activeClassName={s.active}>Dimych2</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to={'/dialogs/3'} activeClassName={s.active}>Dimych3</NavLink>
-                </div>
+                <DialogItem userId={1} userName={'King'}/>
+                <DialogItem userId={2} userName={'Czar'}/>
+                <DialogItem userId={3} userName={'Holop'}/>
+                <DialogItem userId={4} userName={'Zopa'}/>
             </div>
 
             <div className={s.messages}>
-                <div className={s.msg}>
-                    ываыва ыва ыув а ыва ыв ыва111
-                </div>
-                <div className={s.msg}>
-                    ываыва ыва ыув а ыва ыв ыва222
-                </div>
-                <div className={s.msg}>
-                    ываыва ыва ыув а ыва ыв ыва333
-                </div>
+                <Msg message={'Lorem ipsum dolor sit amet.'}/>
+                <Msg message={'Lorem ipsum dolor.'}/>
+                <Msg message={'Lorem ipsum dolor sit amet.'}/>
             </div>
 
         </div>
