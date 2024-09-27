@@ -4,11 +4,12 @@ import s from './Post.module.css'
 
 const ava = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCp_-DchjKdc2dAuNJYtC0xTgBovaS0DA8EA&s'
 
-type PostPT = {
+export type PostPT = {
+    id: number
     msg: string
     likes: number
 }
-const Post = ({msg, likes}: PostPT) => {
+const Post = ({msg, likes, id}: PostPT) => {
     return (
         <div className={s.item}>
             <img src={ava} alt=""/>

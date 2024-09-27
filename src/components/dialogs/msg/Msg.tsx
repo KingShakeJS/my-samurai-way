@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './Msg.module.css'
 
-type MsgPt = {
+export type MsgPt = {
+    id: number
     message: string
 }
-const Msg = ({message}: MsgPt) => {
+const Msg = ({message, id}: MsgPt) => {
     return (
         <div className={s.msg}>
             {message}

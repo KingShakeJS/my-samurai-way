@@ -7,7 +7,7 @@ import Dialogs from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
 
 
-// урок 24
+// урок 25
 function App() {
 
 
