@@ -7,7 +7,7 @@ import Dialogs from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
 
 
-// урок 26
+// урок 28
 function App() {
 
 
@@ -22,8 +22,8 @@ function App() {
 
             <div className={'Content'}>
 
-                <Route component={Dialogs} path={'/dialogs'}/>
-                <Route component={Profile} path={'/profile'}/>
+                <Route render={() => <Dialogs/>} path={'/dialogs'}/>
+                <Route render={() => <Profile/>} path={'/profile'}/>
 
             </div>
 
