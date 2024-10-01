@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
 import {potsType} from "../../../redux/state";
@@ -8,6 +8,11 @@ type MyPostsPT = {
 }
 const MyPosts = ({posts}: MyPostsPT) => {
 
+    const postElements = createRef<HTMLTextAreaElement>()
+    const addPostHandler = () => {
+        const text = postElements.current?.value
+        alert(text)
+    }
 
     return (
         <div className={s.postsBlock}>
@@ -15,10 +20,16 @@ const MyPosts = ({posts}: MyPostsPT) => {
             <h3>MyPosts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea
+                        ref={postElements}
+                    ></textarea>
                 </div>
                 <div>
-                    <button>добавить пост</button>
+                    <button
+                        onClick={
+                            addPostHandler
+                        }>добавить пост
+                    </button>
                 </div>
             </div>
 

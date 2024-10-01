@@ -1,8 +1,9 @@
+// типизация всего state
 export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
 }
-
+// типизация страниц / вложенности первого уровня
 export type profilePageType = {
     posts: Array<potsType>
 }
@@ -11,7 +12,7 @@ export type dialogsPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
 }
-
+// типизвция вложенности второго уровня
 export type potsType = {
     id: number
     msg: string
