@@ -8,13 +8,14 @@ import {Route} from "react-router-dom";
 import {stateType} from "./redux/state";
 
 
-// урок 32
+// урок 33
 
 type AppPT = {
     state: stateType
+    addPost: (postMessage: string) => void
 }
 
-function App({state}: AppPT) {
+function App({state, addPost}: AppPT) {
 
     return (
 
@@ -33,6 +34,7 @@ function App({state}: AppPT) {
 
                 <Route render={() => <Profile
                     state={state.profilePage}
+                    addPost={addPost}
                 />} path={'/profile'}/>
 
             </div>

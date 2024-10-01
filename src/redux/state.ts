@@ -1,9 +1,11 @@
-// типизация всего state
+// типизация всего state //////////////////////////////////////////////////////////////////////////////
+import {v1} from "uuid";
+
 export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
 }
-// типизация страниц / вложенности первого уровня
+// типизация страниц / вложенности первого уровня///////////////////////////////////////////////////////
 export type profilePageType = {
     posts: Array<potsType>
 }
@@ -12,48 +14,57 @@ export type dialogsPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
 }
-// типизвция вложенности второго уровня
+// типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 export type potsType = {
-    id: number
+    id: string
     msg: string
     likes: number
 }
 
 export type dialogsType = {
-    userId: number
+    userId: string
     userName: string
 }
 export type messagesType = {
-    id: number
+    id: string
     message: string
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 const state: stateType = {
     profilePage: {
         posts: [
-            {id: 1, msg: 'sdfsdf sdf', likes: 2},
-            {id: 2, msg: 'ddd', likes: 234},
-            {id: 3, msg: 'gggd d ', likes: 232},
-            {id: 4, msg: 'dd ', likes: 23552},
+            {id: v1(), msg: 'sdfsdf sdf', likes: 2},
+            {id: v1(), msg: 'ddd', likes: 234},
+            {id: v1(), msg: 'gggd d ', likes: 232},
+            {id: v1(), msg: 'dd ', likes: 23552},
         ],
 
     },
     dialogsPage: {
         dialogs: [
-            {userId: 1, userName: 'King'},
-            {userId: 2, userName: 'Czar'},
-            {userId: 3, userName: 'Holop'},
-            {userId: 4, userName: 'Zopa'},
+            {userId: v1(), userName: 'King'},
+            {userId: v1(), userName: 'Czar'},
+            {userId: v1(), userName: 'Holop'},
+            {userId: v1(), userName: 'Zopa'},
         ],
         messages: [
-            {id: 1, message: 'dfg dfgdfg sdgff'},
-            {id: 2, message: 'jkl jklhjklhjkl hjklhjkl'},
-            {id: 3, message: 'z xczXCZXCzxcv  vcxcxz'},
-            {id: 4, message: '[pp[ppo[ npb[ po [ op[ '},
-            {id: 5, message: ' sadsgtykjui  kl ll kl k'},
+            {id: v1(), message: 'dfg dfgdfg sdgff'},
+            {id: v1(), message: 'jkl jklhjklhjkl hjklhjkl'},
+            {id: v1(), message: 'z xczXCZXCzxcv  vcxcxz'},
+            {id: v1(), message: '[pp[ppo[ npb[ po [ op[ '},
+            {id: v1(), message: ' sadsgtykjui  kl ll kl k'},
         ],
     },
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: potsType = {
+        id: v1(), msg: postMessage, likes: 0
+    }
+    state.profilePage.posts.push(newPost)
+
+    console.log(state.profilePage.posts)
 }
 
 export default state

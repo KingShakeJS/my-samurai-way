@@ -5,13 +5,16 @@ import {potsType} from "../../../redux/state";
 
 type MyPostsPT = {
     posts: Array<potsType>
+    addPost: (postMessage: string) => void
 }
-const MyPosts = ({posts}: MyPostsPT) => {
+const MyPosts = ({posts, addPost}: MyPostsPT) => {
 
     const postElements = createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
-        const text = postElements.current?.value
-        alert(text)
+        if (postElements.current) {
+            const text = postElements.current.value
+            addPost(text)
+        }
     }
 
     return (
