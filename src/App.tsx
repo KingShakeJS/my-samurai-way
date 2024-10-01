@@ -8,14 +8,15 @@ import {Route} from "react-router-dom";
 import {stateType} from "./redux/state";
 
 
-// урок 34
+// урок 35
 
 type AppPT = {
     state: stateType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    updateInputValue: (newText: string) => void
 }
 
-function App({state, addPost}: AppPT) {
+function App({state, addPost, updateInputValue}: AppPT) {
 
     return (
 
@@ -35,6 +36,7 @@ function App({state, addPost}: AppPT) {
                 <Route render={() => <Profile
                     state={state.profilePage}
                     addPost={addPost}
+                    updateInputValue={updateInputValue}
                 />} path={'/profile'}/>
 
             </div>

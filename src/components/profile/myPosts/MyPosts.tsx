@@ -1,21 +1,22 @@
-import React, {createRef} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
-import {potsType} from "../../../redux/state";
+import {profilePageType} from "../../../redux/state";
 
 type MyPostsPT = {
-    posts: Array<potsType>
-    addPost: (postMessage: string) => void
-}
-const MyPosts = ({posts, addPost}: MyPostsPT) => {
+    state: profilePageType
+    addPost: () => void
+    updateInputValue: (newText: string) => void
 
-    const postElements = createRef<HTMLTextAreaElement>()
+}
+const MyPosts = ({state, addPost, updateInputValue}: MyPostsPT) => {
+
     const addPostHandler = () => {
-        if (postElements.current) {
-            const text = postElements.current.value
-            addPost(text)
-            postElements.current.value = ''
-        }
+        addPost()
+    }
+
+    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        updateInputValue(e.currentTarget.value)
     }
 
     return (
@@ -25,7 +26,8 @@ const MyPosts = ({posts, addPost}: MyPostsPT) => {
             <div>
                 <div>
                     <textarea
-                        ref={postElements}
+                        value={state.inputValue}
+                        onChange={onPostChangeHandler}
                     ></textarea>
                 </div>
                 <div>
@@ -39,7 +41,7 @@ const MyPosts = ({posts, addPost}: MyPostsPT) => {
 
             <div className={s.posts}>
                 {
-                    posts.map(p => <Post key={p.id} msg={p.msg} id={p.id} likes={p.likes}/>)
+                    state.posts.map(p => <Post key={p.id} msg={p.msg} id={p.id} likes={p.likes}/>)
                 }
             </div>
         </div>

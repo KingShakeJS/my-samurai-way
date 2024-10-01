@@ -1,4 +1,4 @@
-import {addPost, stateType} from "./redux/state";
+import {addPost, stateType, updateInputValue} from "./redux/state";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
@@ -10,6 +10,7 @@ export const rerenderEntireTree = (state: stateType) => {
             <App
                 state={state}
                 addPost={addPost}
+                updateInputValue={updateInputValue}
             />
         </BrowserRouter>,
         document.getElementById('root')

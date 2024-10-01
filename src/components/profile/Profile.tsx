@@ -8,16 +8,19 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 
 type ProfilePT = {
     state: profilePageType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    updateInputValue: (newText: string) => void
+
 }
 
-const Profile = ({state, addPost}: ProfilePT) => {
+const Profile = ({state, addPost, updateInputValue}: ProfilePT) => {
     return (
         <div>
             <ProfileInfo/>
             <MyPosts
-                posts={state.posts}
+                state={state}
                 addPost={addPost}
+                updateInputValue={updateInputValue}
             />
 
         </div>

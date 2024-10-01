@@ -8,6 +8,7 @@ export type stateType = {
 }
 // типизация страниц / вложенности первого уровня///////////////////////////////////////////////////////
 export type profilePageType = {
+    inputValue: string
     posts: Array<potsType>
 }
 
@@ -34,6 +35,8 @@ export type messagesType = {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 const state: stateType = {
     profilePage: {
+        inputValue: '',
+
         posts: [
             {id: v1(), msg: 'sdfsdf sdf', likes: 2},
             {id: v1(), msg: 'ddd', likes: 234},
@@ -59,12 +62,18 @@ const state: stateType = {
     },
 }
 
-export const addPost = (postMessage: string) => {
+// функциии /////////////////////////////////////////////////////////////////////////////////////////////
+export const addPost = () => {
     const newPost: potsType = {
-        id: v1(), msg: postMessage, likes: 0
+        id: v1(), msg: state.profilePage.inputValue, likes: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.inputValue = ''
+    rerenderEntireTree(state)
+}
 
+export const updateInputValue = (newText: string) => {
+    state.profilePage.inputValue = newText
     rerenderEntireTree(state)
 }
 
