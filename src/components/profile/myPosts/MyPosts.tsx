@@ -14,6 +14,7 @@ const MyPosts = ({posts, addPost}: MyPostsPT) => {
         if (postElements.current) {
             const text = postElements.current.value
             addPost(text)
+            postElements.current.value = ''
         }
     }
 

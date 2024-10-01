@@ -1,5 +1,6 @@
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../render";
 
 export type stateType = {
     profilePage: profilePageType
@@ -64,7 +65,7 @@ export const addPost = (postMessage: string) => {
     }
     state.profilePage.posts.push(newPost)
 
-    console.log(state.profilePage.posts)
+    rerenderEntireTree(state)
 }
 
 export default state
