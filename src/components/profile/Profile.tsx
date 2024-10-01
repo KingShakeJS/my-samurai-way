@@ -1,8 +1,7 @@
 import React from 'react';
-import s from './Profile.module.css'
 import MyPosts from "./myPosts/MyPosts";
 import ProfileInfo from "./profileInfo/ProfileInfo";
-import {PostPT} from "./myPosts/post/Post";
+import {profilePageType} from "../../redux/state";
 
 export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg'
 
@@ -10,15 +9,15 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 
 
 type ProfilePT={
-    posts: Array<PostPT>
+    state: profilePageType
 
 }
 
-const Profile = ({posts}:ProfilePT) => {
+const Profile = ({state}:ProfilePT) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={posts}/>
+            <MyPosts posts={state.posts}/>
         </div>
     );
 };

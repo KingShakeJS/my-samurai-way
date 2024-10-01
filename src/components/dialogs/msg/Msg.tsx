@@ -1,11 +1,9 @@
 import React from 'react';
 import s from './Msg.module.css'
+import {messagesType} from "../../../redux/state";
 
-export type MsgPt = {
-    id: number
-    message: string
-}
-const Msg = ({message, id}: MsgPt) => {
+
+const Msg = ({message, id}: messagesType) => {
     return (
         <div className={s.msg}>
             {message}

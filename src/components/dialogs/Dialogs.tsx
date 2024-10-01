@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import DialogItem, {DialogItemPT} from "./dialogItem/DialogItem";
-import Msg, {MsgPt} from "./msg/Msg";
+import DialogItem from "./dialogItem/DialogItem";
+import Msg from "./msg/Msg";
+import {dialogsPageType} from "../../redux/state";
 
 
 type DialogsPT = {
-    dialogs: Array<DialogItemPT>
-    messages: Array<MsgPt>
+  state: dialogsPageType
 }
-const Dialogs = ({dialogs, messages}: DialogsPT) => {
+const Dialogs = ({state}: DialogsPT) => {
 
 
     return (
@@ -16,13 +16,13 @@ const Dialogs = ({dialogs, messages}: DialogsPT) => {
 
             <div className={s.dialogsItems}>
                 {
-                    dialogs.map(el => <DialogItem userId={el.userId} userName={el.userName}/>)
+                    state.dialogs.map(el => <DialogItem key={el.userId} userId={el.userId} userName={el.userName}/>)
                 }
             </div>
 
             <div className={s.messages}>
                 {
-                    messages.map(m => <Msg message={m.message} id={m.id}/>)
+                    state.messages.map(m => <Msg key={m.id} message={m.message} id={m.id}/>)
                 }
             </div>
 

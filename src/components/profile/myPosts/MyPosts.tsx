@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css'
-import Post, {PostPT} from "./post/Post";
+import Post from "./post/Post";
+import {potsType} from "../../../redux/state";
 
 type MyPostsPT = {
-    posts: Array<PostPT>
+    posts: Array<potsType>
 }
 const MyPosts = ({posts}: MyPostsPT) => {
-
 
 
     return (
@@ -24,7 +24,7 @@ const MyPosts = ({posts}: MyPostsPT) => {
 
             <div className={s.posts}>
                 {
-                    posts.map(p => <Post msg={p.msg} id={p.id} likes={p.likes}/>)
+                    posts.map(p => <Post key={p.id} msg={p.msg} id={p.id} likes={p.likes}/>)
                 }
             </div>
         </div>
