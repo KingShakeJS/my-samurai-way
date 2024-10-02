@@ -4,9 +4,19 @@ export type storeType = {
     _state: stateType
     _callSubscriber: (state: stateType) => void
     subscribe: (observer: (state: stateType) => void) => void
-    addPost: () => void
-    updateInputValue: (newText: string) => void
     getState: () => stateType
+    dispatch: (action: actionsTypes) => void
+}
+
+// типизация action
+export type actionsTypes = addPostActionType | updateNewPostTextActionType
+
+export type addPostActionType = {
+    type: 'ADD-POST'
+}
+export type updateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
 }
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -81,26 +91,30 @@ const store: storeType = {
         this._callSubscriber = observer
     },
 
-    addPost() {
-        const newPost: potsType = {
-            id: v1(),
-            msg: this._state.profilePage.inputValue,
-            likes: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.inputValue = ''
-        this._callSubscriber(this._state)
-    },
-
-    updateInputValue(newText: string) {
-        this._state.profilePage.inputValue = newText
-        this._callSubscriber(this._state)
-    },
     getState() {
         return this._state
     },
+    dispatch(action: actionsTypes) {
+        if (action.type === 'ADD-POST') {
+            const newPost: potsType = {
+                id: v1(),
+                msg: this._state.profilePage.inputValue,
+                likes: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.inputValue = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            if (action.newText) {
+                this._state.profilePage.inputValue = action.newText
+                this._callSubscriber(this._state)
+            }
+        }
+    },
+
 
 }
+
 
 export default store
 

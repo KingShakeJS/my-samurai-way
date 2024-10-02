@@ -5,18 +5,17 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {stateType} from "./redux/state";
+import {actionsTypes, stateType} from "./redux/state";
 
 
-// урок 38
+// урок 39
 
 type AppPT = {
     state: stateType
-    addPost: () => void
-    updateInputValue: (newText: string) => void
+    dispatch: (action: actionsTypes) => void
 }
 
-function App({state, addPost, updateInputValue}: AppPT) {
+function App({state, dispatch}: AppPT) {
 
     return (
 
@@ -35,8 +34,7 @@ function App({state, addPost, updateInputValue}: AppPT) {
 
                 <Route render={() => <Profile
                     state={state.profilePage}
-                    addPost={addPost}
-                    updateInputValue={updateInputValue}
+                    dispatch={dispatch}
                 />} path={'/profile'}/>
 
             </div>

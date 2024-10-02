@@ -1,22 +1,20 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
-import {profilePageType} from "../../../redux/state";
+import {actionsTypes, profilePageType} from "../../../redux/state";
 
 type MyPostsPT = {
     state: profilePageType
-    addPost: () => void
-    updateInputValue: (newText: string) => void
-
+    dispatch: (action: actionsTypes) => void
 }
-const MyPosts = ({state, addPost, updateInputValue}: MyPostsPT) => {
+const MyPosts = ({state, dispatch}: MyPostsPT) => {
 
     const addPostHandler = () => {
-        addPost()
+        dispatch({type:"ADD-POST"})
     }
 
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateInputValue(e.currentTarget.value)
+        dispatch({type: "UPDATE-NEW-POST-TEXT", newText: e.currentTarget.value})
     }
 
     return (
