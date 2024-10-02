@@ -1,7 +1,6 @@
-// типизация всего state //////////////////////////////////////////////////////////////////////////////
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../render";
 
+// типизация всего state //////////////////////////////////////////////////////////////////////////////
 export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPageType
@@ -63,6 +62,14 @@ const state: stateType = {
 }
 
 // функциии /////////////////////////////////////////////////////////////////////////////////////////////
+
+let rerenderEntireTree = (state: stateType) => {
+    console.log('заглушка')
+}
+export const subscribe = (observer: (state: stateType) => void) => {
+    rerenderEntireTree = observer
+}
+
 export const addPost = () => {
     const newPost: potsType = {
         id: v1(), msg: state.profilePage.inputValue, likes: 0
