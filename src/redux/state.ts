@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {ChangeEvent} from "react";
 
 export type storeType = {
     _state: stateType
@@ -9,15 +10,19 @@ export type storeType = {
 }
 
 // типизация action
+
+// export type addPostActionType = {
+//     type: 'ADD-POST'
+// }
+// export type updateNewPostTextActionType = {
+//     type: 'UPDATE-NEW-POST-TEXT'
+//     newText: string
+// }
+
+export type addPostActionType = ReturnType<typeof addPostAC>
+export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
 export type actionsTypes = addPostActionType | updateNewPostTextActionType
 
-export type addPostActionType = {
-    type: 'ADD-POST'
-}
-export type updateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
 export type stateType = {
@@ -49,6 +54,9 @@ export type messagesType = {
     id: string
     message: string
 }
+// action types конствнты ///////////////////////////////////////////////////////////////////////////////
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -95,7 +103,7 @@ const store: storeType = {
         return this._state
     },
     dispatch(action: actionsTypes) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: potsType = {
                 id: v1(),
                 msg: this._state.profilePage.inputValue,
@@ -104,7 +112,7 @@ const store: storeType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.inputValue = ''
             this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             if (action.newText) {
                 this._state.profilePage.inputValue = action.newText
                 this._callSubscriber(this._state)
@@ -114,6 +122,22 @@ const store: storeType = {
 
 
 }
+
+// типизация action creator /////////////////////////////////////////////////////////////////
+
+type addPostActionCreatorType = () => actionsTypes
+type updateNewPostTextActionCreatorType = (e: ChangeEvent<HTMLTextAreaElement>) => actionsTypes
+
+// функции action creator //////////////////////////////////////////////////////////////////
+export const addPostAC = () => {
+    return {
+        type: ADD_POST
+    } as const
+}
+export const updateNewPostTextAC = (text: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text
+} as const)
 
 
 export default store
