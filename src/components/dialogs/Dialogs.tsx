@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Msg from "./msg/Msg";
-import {dialogsPageType} from "../../redux/state";
+import {actionsTypes, dialogsPageType, sendMsgAC, updateNewMsgValueAC} from "../../redux/state";
 
 
 type DialogsPT = {
-  state: dialogsPageType
+    state: dialogsPageType
+    dispatch: (action: actionsTypes) => void
 }
-const Dialogs = ({state}: DialogsPT) => {
+const Dialogs = ({state, dispatch}: DialogsPT) => {
 
+    const onSendMsgClickHandler = () => {
+        dispatch(sendMsgAC())
+    }
+    const onNewMsgChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(updateNewMsgValueAC(e.currentTarget.value))
+    }
 
     return (
         <div className={s.Dialogs}>
@@ -21,9 +28,29 @@ const Dialogs = ({state}: DialogsPT) => {
             </div>
 
             <div className={s.messages}>
-                {
-                    state.messages.map(m => <Msg key={m.id} message={m.message} id={m.id}/>)
-                }
+
+                <div>
+                    {
+                        state.messages.map(m => <Msg key={m.id} message={m.message} id={m.id}/>)
+                    }
+                </div>
+
+                <div>
+                    <div>
+                        <textarea
+                            value={state.newMsgValue}
+                            onChange={onNewMsgChangeHandler}
+                            placeholder={'введите сообщение'}
+                        ></textarea>
+                    </div>
+                    <div>
+                        <button
+                            onClick={onSendMsgClickHandler}
+                        >Отправить
+                        </button>
+                    </div>
+                </div>
+
             </div>
 
         </div>

@@ -8,7 +8,7 @@ import {Route} from "react-router-dom";
 import {actionsTypes, stateType} from "./redux/state";
 
 
-// урок 40
+// урок 41
 
 type AppPT = {
     state: stateType
@@ -29,6 +29,7 @@ function App({state, dispatch}: AppPT) {
             <div className={'Content'}>
 
                 <Route render={() => <Dialogs
+                    dispatch={dispatch}
                     state={state.dialogsPage}
                 />} path={'/dialogs'}/>
 

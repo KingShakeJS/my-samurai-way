@@ -21,7 +21,13 @@ export type storeType = {
 
 export type addPostActionType = ReturnType<typeof addPostAC>
 export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
-export type actionsTypes = addPostActionType | updateNewPostTextActionType
+export type updateNewMsgValueActionType = ReturnType<typeof updateNewMsgValueAC>
+export type sendMsgActionType = ReturnType<typeof sendMsgAC>
+export type actionsTypes =
+    addPostActionType
+    | updateNewPostTextActionType
+    | updateNewMsgValueActionType
+    | sendMsgActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -38,6 +44,7 @@ export type profilePageType = {
 export type dialogsPageType = {
     dialogs: Array<dialogsType>
     messages: Array<messagesType>
+    newMsgValue: string
 }
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 export type potsType = {
@@ -57,6 +64,8 @@ export type messagesType = {
 // action types конствнты ///////////////////////////////////////////////////////////////////////////////
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MSG_VALUE = "UPDATE-NEW-MSG-VALUE"
+const SEND_MSG = "SEND-MSG"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,6 +96,7 @@ const store: storeType = {
                 {id: v1(), message: '[pp[ppo[ npb[ po [ op[ '},
                 {id: v1(), message: ' sadsgtykjui  kl ll kl k'},
             ],
+            newMsgValue: ''
         },
     },
 // методы /////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,6 +127,14 @@ const store: storeType = {
                 this._state.profilePage.inputValue = action.newText
                 this._callSubscriber(this._state)
             }
+        } else if (action.type === UPDATE_NEW_MSG_VALUE) {
+            this._state.dialogsPage.newMsgValue = action.newMsgValue
+            this._callSubscriber(this._state)
+        } else if (action.type === SEND_MSG) {
+            const newMsg = this._state.dialogsPage.newMsgValue
+            this._state.dialogsPage.newMsgValue = ''
+            this._state.dialogsPage.messages.push({id: v1(), message: newMsg})
+            this._callSubscriber(this._state)
         }
     },
 
@@ -137,6 +155,12 @@ export const addPostAC = () => {
 export const updateNewPostTextAC = (text: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text
+} as const)
+
+export const sendMsgAC = () => ({type: SEND_MSG} as const)
+export const updateNewMsgValueAC = (value: string) => ({
+    type: UPDATE_NEW_MSG_VALUE,
+    newMsgValue: value
 } as const)
 
 
