@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {ChangeEvent} from "react";
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {dialogsReducer, sendMsgAC, updateNewMsgValueAC} from "./dialogs-reducer";
 
 export type storeType = {
     _state: stateType
@@ -10,14 +12,6 @@ export type storeType = {
 }
 
 // типизация action
-
-// export type addPostActionType = {
-//     type: 'ADD-POST'
-// }
-// export type updateNewPostTextActionType = {
-//     type: 'UPDATE-NEW-POST-TEXT'
-//     newText: string
-// }
 
 export type addPostActionType = ReturnType<typeof addPostAC>
 export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
@@ -61,11 +55,6 @@ export type messagesType = {
     id: string
     message: string
 }
-// action types конствнты ///////////////////////////////////////////////////////////////////////////////
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MSG_VALUE = "UPDATE-NEW-MSG-VALUE"
-const SEND_MSG = "SEND-MSG"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -113,31 +102,10 @@ const store: storeType = {
         return this._state
     },
     dispatch(action: actionsTypes) {
-        if (action.type === ADD_POST) {
-            const newPost: potsType = {
-                id: v1(),
-                msg: this._state.profilePage.inputValue,
-                likes: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.inputValue = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            if (action.newText) {
-                this._state.profilePage.inputValue = action.newText
-                this._callSubscriber(this._state)
-            }
-        } else if (action.type === UPDATE_NEW_MSG_VALUE) {
-            this._state.dialogsPage.newMsgValue = action.newMsgValue
-            this._callSubscriber(this._state)
-        } else if (action.type === SEND_MSG) {
-            const newMsg = this._state.dialogsPage.newMsgValue
-            this._state.dialogsPage.newMsgValue = ''
-            this._state.dialogsPage.messages.push({id: v1(), message: newMsg})
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber(this._state)
     },
-
 
 }
 
@@ -145,24 +113,6 @@ const store: storeType = {
 
 type addPostActionCreatorType = () => actionsTypes
 type updateNewPostTextActionCreatorType = (e: ChangeEvent<HTMLTextAreaElement>) => actionsTypes
-
-// функции action creator //////////////////////////////////////////////////////////////////
-export const addPostAC = () => {
-    return {
-        type: ADD_POST
-    } as const
-}
-export const updateNewPostTextAC = (text: string) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-} as const)
-
-export const sendMsgAC = () => ({type: SEND_MSG} as const)
-export const updateNewMsgValueAC = (value: string) => ({
-    type: UPDATE_NEW_MSG_VALUE,
-    newMsgValue: value
-} as const)
-
 
 export default store
 

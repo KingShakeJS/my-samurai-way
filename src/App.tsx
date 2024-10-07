@@ -8,7 +8,7 @@ import {Route} from "react-router-dom";
 import {actionsTypes, stateType} from "./redux/state";
 
 
-// урок 41
+// урок 42
 
 type AppPT = {
     state: stateType
