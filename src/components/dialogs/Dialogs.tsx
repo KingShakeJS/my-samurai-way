@@ -2,21 +2,21 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Msg from "./msg/Msg";
-import {actionsTypes, dialogsPageType,} from "../../redux/store";
-import {sendMsgAC, updateNewMsgValueAC} from "../../redux/dialogs-reducer";
+import {dialogsPageType,} from "../../redux/store";
 
 
 type DialogsPT = {
     state: dialogsPageType
-    dispatch: (action: actionsTypes) => void
+    onSendMsgClick: () => void
+    onNewMsgChange: (text: string) => void
 }
-const Dialogs = ({state, dispatch}: DialogsPT) => {
+const Dialogs = ({state, onSendMsgClick, onNewMsgChange}: DialogsPT) => {
 
     const onSendMsgClickHandler = () => {
-        dispatch(sendMsgAC())
+        onSendMsgClick()
     }
     const onNewMsgChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewMsgValueAC(e.currentTarget.value))
+        onNewMsgChange(e.currentTarget.value)
     }
 
     return (

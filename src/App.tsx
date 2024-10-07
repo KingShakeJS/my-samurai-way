@@ -3,12 +3,12 @@ import './App.css';
 import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
-import Dialogs from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import {actionsTypes, stateType} from "./redux/store";
+import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 
-// урок 43
+// урок 44
 
 type AppPT = {
     state: stateType
@@ -28,7 +28,7 @@ function App({state, dispatch}: AppPT) {
 
             <div className={'Content'}>
 
-                <Route render={() => <Dialogs
+                <Route render={() => <DialogsContainer
                     dispatch={dispatch}
                     state={state.dialogsPage}
                 />} path={'/dialogs'}/>

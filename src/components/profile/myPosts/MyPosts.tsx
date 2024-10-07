@@ -1,24 +1,24 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
-import {actionsTypes, profilePageType} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+import {profilePageType} from "../../../redux/store";
 
 type MyPostsPT = {
+    addPost: () => void
+    onPostChange: (text: string) => void
     state: profilePageType
-    dispatch: (action: actionsTypes) => void
 }
 
 
-const MyPosts = ({state, dispatch}: MyPostsPT) => {
-
-    const addPostHandler = () => {
-        dispatch(addPostAC())
-    }
+const MyPosts = ({onPostChange, addPost, state}: MyPostsPT) => {
 
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.currentTarget.value
-        dispatch(updateNewPostTextAC(text))
+        onPostChange(text)
+    }
+
+    const addPostHandler = () => {
+        addPost()
     }
 
     return (
@@ -34,9 +34,8 @@ const MyPosts = ({state, dispatch}: MyPostsPT) => {
                 </div>
                 <div>
                     <button
-                        onClick={
-                            addPostHandler
-                        }>добавить пост
+                        onClick={addPostHandler}
+                    >добавить пост
                     </button>
                 </div>
             </div>
