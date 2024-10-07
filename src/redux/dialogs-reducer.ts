@@ -1,4 +1,4 @@
-import {actionsTypes, dialogsPageType} from "./state";
+import {actionsTypes, dialogsPageType} from "./store";
 import {v1} from "uuid";
 
 const UPDATE_NEW_MSG_VALUE = "UPDATE-NEW-MSG-VALUE"
@@ -9,7 +9,19 @@ export const updateNewMsgValueAC = (value: string) => ({
     type: UPDATE_NEW_MSG_VALUE,
     newMsgValue: value
 } as const)
-export const dialogsReducer = (state: dialogsPageType, action: actionsTypes) => {
+
+const initialState: dialogsPageType = {
+    dialogs: [
+        {userId: v1(), userName: 'King'},
+
+    ],
+    messages: [
+        {id: v1(), message: 'dfg dfgdfg sdgff'},
+
+    ],
+    newMsgValue: ''
+}
+export const dialogsReducer = (state: dialogsPageType = initialState, action: actionsTypes) => {
 
     switch (action.type) {
         case  UPDATE_NEW_MSG_VALUE:

@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css'
-import {potsType} from "../../../../redux/state";
+import {potsType} from "../../../../redux/store";
 
 
 const ava = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCp_-DchjKdc2dAuNJYtC0xTgBovaS0DA8EA&s'

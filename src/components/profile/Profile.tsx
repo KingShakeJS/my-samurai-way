@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPosts from "./myPosts/MyPosts";
 import ProfileInfo from "./profileInfo/ProfileInfo";
-import {actionsTypes, profilePageType} from "../../redux/state";
+import {actionsTypes, profilePageType} from "../../redux/store";
 
 export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-rendering-svet-forma-339-3732.jpg'
 

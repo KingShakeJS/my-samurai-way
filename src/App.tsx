@@ -5,10 +5,10 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import Dialogs from "./components/dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {actionsTypes, stateType} from "./redux/state";
+import {actionsTypes, stateType} from "./redux/store";
 
 
-// урок 42
+// урок 43
 
 type AppPT = {
     state: stateType
