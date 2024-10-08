@@ -21,7 +21,7 @@ const initialState: dialogsPageType = {
     ],
     newMsgValue: ''
 }
-export const dialogsReducer = (state: dialogsPageType = initialState, action: actionsTypes) => {
+export const dialogsReducer = (state: dialogsPageType = initialState, action: actionsTypes): dialogsPageType => {
 
     switch (action.type) {
         case  UPDATE_NEW_MSG_VALUE:

@@ -4,18 +4,14 @@ import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import {Route} from "react-router-dom";
-import {actionsTypes, stateType} from "./redux/store";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 
-// урок 44
+// урок 46
 
-type AppPT = {
-    state: stateType
-    dispatch: (action: actionsTypes) => void
-}
 
-function App({state, dispatch}: AppPT) {
+
+function App() {
 
     return (
 
@@ -28,15 +24,9 @@ function App({state, dispatch}: AppPT) {
 
             <div className={'Content'}>
 
-                <Route render={() => <DialogsContainer
-                    dispatch={dispatch}
-                    state={state.dialogsPage}
-                />} path={'/dialogs'}/>
+                <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
 
-                <Route render={() => <Profile
-                    state={state.profilePage}
-                    dispatch={dispatch}
-                />} path={'/profile'}/>
+                <Route render={() => <Profile/>} path={'/profile'}/>
 
             </div>
 
