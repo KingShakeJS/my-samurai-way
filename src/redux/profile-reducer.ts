@@ -18,13 +18,13 @@ const initialState: profilePageType = {
     inputValue: '',
 
     posts: [
-        {id: v1(), msg: 'sdfsdf sdf', likes: 2},
+        // {id: v1(), msg: 'sdfsdf sdf', likes: 2},
 
     ],
 
 }
 export const profileReducer = (state: profilePageType = initialState, action: actionsTypes): profilePageType => {
-
+    const copyState = {...state}
     switch (action.type) {
         case ADD_POST:
             const newPost: potsType = {
@@ -32,13 +32,14 @@ export const profileReducer = (state: profilePageType = initialState, action: ac
                 msg: state.inputValue,
                 likes: 0
             }
-            state.posts.push(newPost)
-            state.inputValue = ''
-            return state
+            copyState.posts = [...state.posts]
+            copyState.posts.push(newPost)
+            copyState.inputValue = ''
+            return copyState
 
         case UPDATE_NEW_POST_TEXT:
-            state.inputValue = action.newText
-            return state
+            copyState.inputValue = action.newText
+            return copyState
         default:
             return state
     }

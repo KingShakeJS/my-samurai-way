@@ -7,7 +7,7 @@ import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 
 
-// урок 46
+// урок 48
 
 
 
@@ -16,7 +16,6 @@ function App() {
     return (
 
         <div className='app-wrapper'>
-
 
             <Header/>
 
@@ -29,7 +28,6 @@ function App() {
                 <Route render={() => <Profile/>} path={'/profile'}/>
 
             </div>
-
 
         </div>
     );
