@@ -13,25 +13,25 @@ export const updateNewMsgValueAC = (value: string) => ({
 const initialState: dialogsPageType = {
     dialogs: [
         {userId: v1(), userName: 'King'},
-
     ],
     messages: [
         {id: v1(), message: 'dfg dfgdfg sdgff'},
-
     ],
     newMsgValue: ''
 }
 export const dialogsReducer = (state: dialogsPageType = initialState, action: actionsTypes): dialogsPageType => {
-
     switch (action.type) {
         case  UPDATE_NEW_MSG_VALUE:
-            state.newMsgValue = action.newMsgValue
-            return state
+            return {
+                ...state,
+                newMsgValue: action.newMsgValue
+            }
         case  SEND_MSG:
-            const newMsg = state.newMsgValue
-            state.newMsgValue = ''
-            state.messages.push({id: v1(), message: newMsg})
-            return state
+            return {
+                ...state,
+                newMsgValue: '',
+                messages: [...state.messages, {id: v1(), message: state.newMsgValue}]
+            }
         default:
             return state
     }

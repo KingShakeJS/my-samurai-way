@@ -4,10 +4,10 @@ import {profileReducer} from "./profile-reducer";
 
 
 const rootReducer = combineReducers({
-    dialogsPage: dialogsReducer ,
+    dialogsPage: dialogsReducer,
     profilePage: profileReducer,
 })
-export type appStateType =ReturnType<typeof rootReducer>
+export type appStateType = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer)
 

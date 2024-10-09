@@ -1,4 +1,4 @@
-import {actionsTypes, potsType, profilePageType} from "./store";
+import {actionsTypes, profilePageType} from "./store";
 import {v1} from "uuid";
 
 const ADD_POST = "ADD-POST";
@@ -18,28 +18,23 @@ const initialState: profilePageType = {
     inputValue: '',
 
     posts: [
-        // {id: v1(), msg: 'sdfsdf sdf', likes: 2},
-
+        {id: v1(), msg: 'sdfsdf sdf', likes: 2},
     ],
 
 }
 export const profileReducer = (state: profilePageType = initialState, action: actionsTypes): profilePageType => {
-    const copyState = {...state}
     switch (action.type) {
         case ADD_POST:
-            const newPost: potsType = {
-                id: v1(),
-                msg: state.inputValue,
-                likes: 0
+            return {
+                ...state,
+                inputValue: '',
+                posts: [...state.posts, {id: v1(), msg: state.inputValue, likes: 0}]
             }
-            copyState.posts = [...state.posts]
-            copyState.posts.push(newPost)
-            copyState.inputValue = ''
-            return copyState
-
         case UPDATE_NEW_POST_TEXT:
-            copyState.inputValue = action.newText
-            return copyState
+            return {
+                ...state,
+                inputValue: action.newText
+            }
         default:
             return state
     }
