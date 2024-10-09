@@ -1,5 +1,6 @@
-import {actionsTypes, dialogsPageType} from "./store";
+
 import {v1} from "uuid";
+import {actionsTypes, dialogsPageType} from "../store";
 
 const UPDATE_NEW_MSG_VALUE = "UPDATE-NEW-MSG-VALUE"
 const SEND_MSG = "SEND-MSG"

@@ -1,0 +1,18 @@
+.usersPage{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+}
+
+.user{
+    display: flex;
+    border: green 2px solid;
+    width: 40%;
+    justify-content: space-around;
+    height: 110px;
+}
+
+.ava{
+    width: 200px;
+}

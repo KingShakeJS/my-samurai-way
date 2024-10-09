@@ -5,9 +5,11 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
+import Users from "./components/users/Users";
+import UsersContainer from "./components/users/UsersContainer";
 
 
-// урок 49
+// урок 50
 
 
 
@@ -26,6 +28,8 @@ function App() {
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
 
                 <Route render={() => <Profile/>} path={'/profile'}/>
+
+                <Route render={() => <UsersContainer/>} path={'/users'}/>
 
             </div>
 

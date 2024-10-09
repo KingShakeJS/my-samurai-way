@@ -1,5 +1,8 @@
-import {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import {sendMsgAC, updateNewMsgValueAC} from "./dialogs-reducer";
+import {addPostAC, updateNewPostTextAC} from "./reducers/profile-reducer";
+import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
+import {v1} from "uuid";
+import {followAC, setUsersAC, unfollowAC} from "./reducers/users-reducer";
+
 
 export type storeType = {
     _state: stateType
@@ -15,11 +18,17 @@ export type addPostActionType = ReturnType<typeof addPostAC>
 export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
 export type updateNewMsgValueActionType = ReturnType<typeof updateNewMsgValueAC>
 export type sendMsgActionType = ReturnType<typeof sendMsgAC>
+export type followActionType = ReturnType<typeof followAC>
+export type unfollowActionType = ReturnType<typeof unfollowAC>
+export type setUsersActionType = ReturnType<typeof setUsersAC>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
     | updateNewMsgValueActionType
     | sendMsgActionType
+    | followActionType
+    | unfollowActionType
+    | setUsersActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -38,7 +47,21 @@ export type dialogsPageType = {
     messages: Array<messagesType>
     newMsgValue: string
 }
+
+export type usersPageType = {
+    users: usersType[]
+}
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
+
+export type usersType = {
+    id: string
+    photoUrl:string
+    followed: boolean,
+    fullName: string
+    status: string
+    location: { citi: string, country: string }
+}
+
 export type potsType = {
     id: string
     msg: string
