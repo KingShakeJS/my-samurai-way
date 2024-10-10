@@ -8,7 +8,7 @@ import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 
 
-// урок 53
+// урок 54
 
 
 function App() {
