@@ -1,5 +1,3 @@
-
-import {v1} from "uuid";
 import {actionsTypes, profilePageType} from "../store";
 
 const ADD_POST = "ADD-POST";
@@ -19,7 +17,7 @@ const initialState: profilePageType = {
     inputValue: '',
 
     posts: [
-        {id: v1(), msg: 'sdfsdf sdf', likes: 2},
+        {id: 786, msg: 'sdfsdf sdf', likes: 2},
     ],
 
 }
@@ -29,7 +27,7 @@ export const profileReducer = (state: profilePageType = initialState, action: ac
             return {
                 ...state,
                 inputValue: '',
-                posts: [...state.posts, {id: v1(), msg: state.inputValue, likes: 0}]
+                posts: [...state.posts, {id: 33, msg: state.inputValue, likes: 0}]
             }
         case UPDATE_NEW_POST_TEXT:
             return {

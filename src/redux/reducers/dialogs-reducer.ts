@@ -1,5 +1,3 @@
-
-import {v1} from "uuid";
 import {actionsTypes, dialogsPageType} from "../store";
 
 const UPDATE_NEW_MSG_VALUE = "UPDATE-NEW-MSG-VALUE"
@@ -13,10 +11,10 @@ export const updateNewMsgValueAC = (value: string) => ({
 
 const initialState: dialogsPageType = {
     dialogs: [
-        {userId: v1(), userName: 'King'},
+        {userId: 67, userName: 'King'},
     ],
     messages: [
-        {id: v1(), message: 'dfg dfgdfg sdgff'},
+        {id: 876, message: 'dfg dfgdfg sdgff'},
     ],
     newMsgValue: ''
 }
@@ -31,7 +29,7 @@ export const dialogsReducer = (state: dialogsPageType = initialState, action: ac
             return {
                 ...state,
                 newMsgValue: '',
-                messages: [...state.messages, {id: v1(), message: state.newMsgValue}]
+                messages: [...state.messages, {id: 89, message: state.newMsgValue}]
             }
         default:
             return state

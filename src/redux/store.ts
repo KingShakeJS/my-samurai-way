@@ -54,26 +54,30 @@ export type usersPageType = {
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 
 export type usersType = {
-    id: string
-    photoUrl:string
-    followed: boolean,
-    fullName: string
-    status: string
-    location: { citi: string, country: string }
+    followed: boolean
+    id: number
+    name: string
+    photos: {
+        large: string | null
+        small: string | null
+    }
+    status: string | null
+    uniqueUrlName: string | null
+
 }
 
 export type potsType = {
-    id: string
+    id: number
     msg: string
     likes: number
 }
 
 export type dialogsType = {
-    userId: string
+    userId: number
     userName: string
 }
 export type messagesType = {
-    id: string
+    id: number
     message: string
 }
 

@@ -5,12 +5,10 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
-import Users from "./components/users/Users";
 import UsersContainer from "./components/users/UsersContainer";
 
 
-// урок 50
-
+// урок 52
 
 
 function App() {
