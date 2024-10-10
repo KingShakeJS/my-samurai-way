@@ -1,4 +1,4 @@
-import {setCurrentPageActionType, usersType} from "../../redux/store";
+import {usersType} from "../../redux/store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {appStateType} from "../../redux/redux-store";
