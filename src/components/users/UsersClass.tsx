@@ -15,10 +15,14 @@ class UsersClass extends Component<UsersPT> {
 
     constructor(props:UsersPT) {
         super(props);
+    }
+
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
             this.props.setUsers(res.data.items)
         })
     }
+
 
     getUsers = () => {
         alert('заглушка')
@@ -35,6 +39,7 @@ class UsersClass extends Component<UsersPT> {
                                 <img
                                     className={s.ava}
                                     src={u.photos.small ? u.photos.small : userPhoto}
+                                    alt={'ava'}
                                 />
                             </div>
                             <div>
