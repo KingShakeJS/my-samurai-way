@@ -16,3 +16,21 @@
 .ava{
     width: 200px;
 }
+.paginationBtns{
+
+}
+.paginationBtns>*{
+    margin-left: 25px;
+   display: inline-block;
+    cursor: pointer;
+}
+.selected{
+    font-weight: bold;
+    color: orangered;
+    border: 2px solid orange;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+}

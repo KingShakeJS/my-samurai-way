@@ -1,7 +1,7 @@
 import {addPostAC, updateNewPostTextAC} from "./reducers/profile-reducer";
 import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
-import {followAC, setUsersAC, unfollowAC} from "./reducers/users-reducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./reducers/users-reducer";
 
 
 export type storeType = {
@@ -21,6 +21,8 @@ export type sendMsgActionType = ReturnType<typeof sendMsgAC>
 export type followActionType = ReturnType<typeof followAC>
 export type unfollowActionType = ReturnType<typeof unfollowAC>
 export type setUsersActionType = ReturnType<typeof setUsersAC>
+export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
+export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -29,6 +31,8 @@ export type actionsTypes =
     | followActionType
     | unfollowActionType
     | setUsersActionType
+    | setCurrentPageActionType
+    | setTotalUsersCountActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -50,6 +54,9 @@ export type dialogsPageType = {
 
 export type usersPageType = {
     users: usersType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 
