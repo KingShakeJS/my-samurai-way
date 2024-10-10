@@ -18,13 +18,15 @@ const Users = ({state, follow, unfollow, setUsers}: UsersPT) => {
     const unfollowHandler = (id: number) => {
         unfollow(id)
     }
-
+const getUsers = () => {
     if (state.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res=>{
             // console.log(res.data.items)
             setUsers(res.data.items)
         })
     }
+
+}
 
     const userList = state.map(u => (
         <div className={s.user} key={u.id}>
@@ -56,6 +58,7 @@ const Users = ({state, follow, unfollow, setUsers}: UsersPT) => {
 
     return (
         <div className={s.usersPage}>
+            <button onClick={getUsers}>getUsers</button>
             {
                 userList
             }

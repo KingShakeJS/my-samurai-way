@@ -1,8 +1,8 @@
 .usersPage{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
     margin: 20px;
+}
+.usersPage>*{
+    margin-bottom: 30px;
 }
 
 .user{
