@@ -1,7 +1,8 @@
-import {actionsTypes, profilePageType} from "../store";
+import {actionsTypes, profilePageType, profileType} from "../store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 
 export const addPostAC = () => {
     return {
@@ -12,6 +13,9 @@ export const updateNewPostTextAC = (text: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text
 } as const)
+export const setUserProfile = (profile: profileType) => ({
+    type: SET_USER_PROFILE, profile
+} as const)
 
 const initialState: profilePageType = {
     inputValue: '',
@@ -19,6 +23,7 @@ const initialState: profilePageType = {
     posts: [
         {id: 786, msg: 'sdfsdf sdf', likes: 2},
     ],
+    profile: null
 
 }
 export const profileReducer = (state: profilePageType = initialState, action: actionsTypes): profilePageType => {
@@ -34,6 +39,12 @@ export const profileReducer = (state: profilePageType = initialState, action: ac
                 ...state,
                 inputValue: action.newText
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
+
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import {addPostAC, updateNewPostTextAC} from "./reducers/profile-reducer";
+import {addPostAC, setUserProfile, updateNewPostTextAC} from "./reducers/profile-reducer";
 import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
 import {
@@ -31,6 +31,7 @@ export type setUsersActionType = ReturnType<typeof setUsers>
 export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
 export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
 export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetching>
+export type setUserProfileActionType = ReturnType<typeof setUserProfile>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -42,6 +43,7 @@ export type actionsTypes =
     | setCurrentPageActionType
     | setTotalUsersCountActionType
     | setToggleIsFetchingActionType
+    | setUserProfileActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -53,6 +55,7 @@ export type stateType = {
 export type profilePageType = {
     inputValue: string
     posts: Array<potsType>
+    profile: profileType | null
 }
 
 export type dialogsPageType = {
@@ -69,6 +72,28 @@ export type usersPageType = {
     isFetching: boolean
 }
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
+
+export type profileType = {
+    aboutMe: string | null
+    contacts: {
+        facebook: string | null
+        website:string | null
+        vk: string | null
+        twitter: string | null
+        instagram: string | null
+        youtube:string | null
+        github: string | null
+        mainLink: string | null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string
+    userId: number
+    photos: {
+        small: string | null
+        large: string | null
+    }
+}
 
 export type usersType = {
     followed: boolean

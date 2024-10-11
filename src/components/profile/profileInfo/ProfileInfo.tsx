@@ -1,8 +1,15 @@
 import React from 'react';
 import {OBLOJKA} from "../Profile";
 import s from './ProfileInfo.module.css'
+import PreLoader from "../../common/preLoader/PreLoader";
+import {profileType} from "../../../redux/store";
 
-const ProfileInfo = () => {
+type ProfileInfoPT = {
+    profile: profileType | null
+
+}
+
+const Description = ({profile}:ProfileInfoPT) => {
     return (
         <>
             <div>
@@ -10,8 +17,24 @@ const ProfileInfo = () => {
             </div>
 
             <div className={s.descriptionBlock}>
+                {
+                    profile?.photos.small ? <img src={profile.photos.small} alt=""/> : ''
+                }
                 ava + description
             </div>
+        </>
+    )
+}
+const ProfileInfo = ({profile}: ProfileInfoPT) => {
+
+
+    return (
+        <>
+            {
+                !profile
+                    ? <PreLoader/>
+                    : <Description profile={profile}/>
+            }
         </>
     );
 };

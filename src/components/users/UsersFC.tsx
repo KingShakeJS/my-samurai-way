@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/ava.webp";
 import {usersType} from "../../redux/store";
+import {NavLink} from "react-router-dom";
 
 type UsersFCPT = {
     onPageChanged: (p: number) => void
@@ -46,11 +47,13 @@ const UsersFC = ({
                 state.map(u => (
                     <div className={s.user} key={u.id}>
                         <div>
-                            <img
-                                className={s.ava}
-                                src={u.photos.small ? u.photos.small : userPhoto}
-                                alt={'ava'}
-                            />
+                            <NavLink to={`/profile/${u.id}`}>
+                                <img
+                                    className={s.ava}
+                                    src={u.photos.small ? u.photos.small : userPhoto}
+                                    alt={'ava'}
+                                />
+                            </NavLink>
                         </div>
                         <div>
                             <div>

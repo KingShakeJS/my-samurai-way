@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
-import Profile from "./components/profile/Profile";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import RootProfileContainer from "./components/profile/ProfileClassContainer";
 
 
-// урок 59
+// урок 60
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
 
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
 
-                <Route render={() => <Profile/>} path={'/profile'}/>
+                <Route render={() => <RootProfileContainer/>} path={'/profile'}/>
 
                 <Route render={() => <UsersContainer/>} path={'/users'}/>
 
