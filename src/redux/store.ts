@@ -2,12 +2,12 @@ import {addPostAC, updateNewPostTextAC} from "./reducers/profile-reducer";
 import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
 import {
-    followAC,
-    setCurrentPageAC,
-    setToggleIsFetchingAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    setToggleIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    unfollow
 } from "./reducers/users-reducer";
 
 
@@ -25,12 +25,12 @@ export type addPostActionType = ReturnType<typeof addPostAC>
 export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
 export type updateNewMsgValueActionType = ReturnType<typeof updateNewMsgValueAC>
 export type sendMsgActionType = ReturnType<typeof sendMsgAC>
-export type followActionType = ReturnType<typeof followAC>
-export type unfollowActionType = ReturnType<typeof unfollowAC>
-export type setUsersActionType = ReturnType<typeof setUsersAC>
-export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
-export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetchingAC>
+export type followActionType = ReturnType<typeof follow>
+export type unfollowActionType = ReturnType<typeof unfollow>
+export type setUsersActionType = ReturnType<typeof setUsers>
+export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
+export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
+export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetching>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType

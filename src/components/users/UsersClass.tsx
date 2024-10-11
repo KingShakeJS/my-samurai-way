@@ -15,30 +15,30 @@ export type UsersClassPT = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (currentPage: number) => void
     isFetching: boolean
-    setToggleIsFetchingAC: (isFetching: boolean) => void
+    setToggleIsFetching: (isFetching: boolean) => void
 
 }
 
 class UsersClass extends Component<UsersClassPT> {
 
     componentDidMount() {
-        this.props.setToggleIsFetchingAC(true)
+        this.props.setToggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setTotalUsersCount(res.data.totalCount)
                 this.props.setUsers(res.data.items)
-                this.props.setToggleIsFetchingAC(false)
+                this.props.setToggleIsFetching(false)
             })
     }
 
     onPageChanged = (p: number) => {
-        this.props.setToggleIsFetchingAC(true)
+        this.props.setToggleIsFetching(true)
         this.props.setCurrentPage(p)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(res => {
 
                 this.props.setUsers(res.data.items)
-                this.props.setToggleIsFetchingAC(false)
+                this.props.setToggleIsFetching(false)
 
             })
     }
