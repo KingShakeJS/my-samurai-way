@@ -1,7 +1,14 @@
 import {addPostAC, updateNewPostTextAC} from "./reducers/profile-reducer";
 import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./reducers/users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setToggleIsFetchingAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC
+} from "./reducers/users-reducer";
 
 
 export type storeType = {
@@ -23,6 +30,7 @@ export type unfollowActionType = ReturnType<typeof unfollowAC>
 export type setUsersActionType = ReturnType<typeof setUsersAC>
 export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
 export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
+export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetchingAC>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -33,6 +41,7 @@ export type actionsTypes =
     | setUsersActionType
     | setCurrentPageActionType
     | setTotalUsersCountActionType
+    | setToggleIsFetchingActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -57,6 +66,7 @@ export type usersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 

@@ -4,7 +4,7 @@ import {Dispatch} from "redux";
 import {appStateType} from "../../redux/redux-store";
 import {
     followAC,
-    setCurrentPageAC,
+    setCurrentPageAC, setToggleIsFetchingAC,
     setTotalUsersCountAC,
     setUsersAC,
     unfollowAC
@@ -16,6 +16,7 @@ type mapStateToPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type mapDispatchToPropsType = {
@@ -23,7 +24,8 @@ type mapDispatchToPropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: usersType[]) => void
     setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (currentPage: number) =>void
+    setTotalUsersCount: (currentPage: number) => void
+    setToggleIsFetchingAC: (isFetching: boolean) => void
 }
 const mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
@@ -31,6 +33,7 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -50,6 +53,9 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         setTotalUsersCount: (currentPage: number) => {
             dispatch(setTotalUsersCountAC(currentPage))
         },
+        setToggleIsFetchingAC: (isFetching: boolean) => {
+            dispatch(setToggleIsFetchingAC(isFetching))
+        }
     }
 }
 

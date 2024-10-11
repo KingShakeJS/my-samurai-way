@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import axios from "axios";
 import {usersType} from "../../redux/store";
 import UsersFC from "./UsersFC";
+import PreLoader from "../common/preLoader/PreLoader";
 
 export type UsersClassPT = {
     state: usersType[]
@@ -12,30 +13,35 @@ export type UsersClassPT = {
     setUsers: (users: usersType[]) => void
     currentPage: number
     setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (currentPage: number) =>void
+    setTotalUsersCount: (currentPage: number) => void
+    isFetching: boolean
+    setToggleIsFetchingAC: (isFetching: boolean) => void
+
 }
 
 class UsersClass extends Component<UsersClassPT> {
 
     componentDidMount() {
+        this.props.setToggleIsFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setTotalUsersCount(res.data.totalCount)
-
                 this.props.setUsers(res.data.items)
+                this.props.setToggleIsFetchingAC(false)
             })
     }
 
     onPageChanged = (p: number) => {
+        this.props.setToggleIsFetchingAC(true)
         this.props.setCurrentPage(p)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(res => {
 
                 this.props.setUsers(res.data.items)
+                this.props.setToggleIsFetchingAC(false)
+
             })
     }
-
-
     getUsers = () => {
         alert('заглушка')
     }
@@ -43,16 +49,25 @@ class UsersClass extends Component<UsersClassPT> {
     render() {
 
 
+        return (
+            <>
+                {
+                    this.props.isFetching
+                        ? <PreLoader/>
+                        : null
+                }
 
-        return <UsersFC
-        state={this.props.state}
-        currentPage={this.props.currentPage}
-        pageSize={this.props.pageSize}
-        follow={this.props.follow}
-        totalUsersCount={this.props.totalUsersCount}
-        unfollow={this.props.unfollow}
-        onPageChanged={this.onPageChanged}
-        />
+                <UsersFC
+                    state={this.props.state}
+                    currentPage={this.props.currentPage}
+                    pageSize={this.props.pageSize}
+                    follow={this.props.follow}
+                    totalUsersCount={this.props.totalUsersCount}
+                    unfollow={this.props.unfollow}
+                    onPageChanged={this.onPageChanged}
+                />
+            </>
+        )
     }
 }
 
