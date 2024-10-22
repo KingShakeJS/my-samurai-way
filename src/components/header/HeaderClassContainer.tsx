@@ -21,7 +21,6 @@ class HeaderClassContainer extends Component<HeaderClassContainerProps> {
         })
             .then(res => {
                 if (res.data.resultCode === 0) {
-                    console.log(res.data.data)
                     const {login, email, id} = res.data.data
                     this.props.setUserData(id, email, login, true)
                 }

@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import userPhoto from "../../assets/images/ava.webp";
 import {usersType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type UsersFCPT = {
     onPageChanged: (p: number) => void
@@ -58,8 +59,48 @@ const UsersFC = ({
                         <div>
                             <div>
                                 {u.followed
-                                    ? <button onClick={() => unfollow(u.id)}>отписаться</button>
-                                    : <button onClick={() => follow(u.id)}>подписаться</button>}
+                                    ? <button
+
+                                        onClick={() => {
+                                            axios.delete(
+                                                `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
+                                                {
+                                                    withCredentials: true,
+                                                    headers: {
+                                                        "API-KEY": '733dfb2b-ad38-4924-a41f-9ae9ca6660c4'
+                                                    }
+                                                })
+                                                .then(res => {
+                                                    if (res.data.resultCode === 0) {
+                                                        unfollow(u.id)
+                                                    }
+                                                })
+                                        }}
+
+                                    >отписаться
+                                    </button>
+
+                                    : <button
+
+                                        onClick={() => {
+                                            axios.post(
+                                                `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
+                                                {},
+                                                {
+                                                    withCredentials: true,
+                                                    headers: {
+                                                        "API-KEY": '733dfb2b-ad38-4924-a41f-9ae9ca6660c4'
+                                                    }
+                                                })
+                                                .then(res => {
+                                                    if (res.data.resultCode === 0) {
+                                                        follow(u.id)
+                                                    }
+                                                })
+                                        }}
+
+                                    >подписаться
+                                    </button>}
                             </div>
                             <div>
                                 <div>
