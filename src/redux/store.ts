@@ -9,6 +9,7 @@ import {
     setUsers,
     unfollow
 } from "./reducers/users-reducer";
+import {setUserData} from "./reducers/auth-reducer";
 
 
 export type storeType = {
@@ -32,6 +33,7 @@ export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
 export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
 export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetching>
 export type setUserProfileActionType = ReturnType<typeof setUserProfile>
+export type setUserDataActionType = ReturnType<typeof setUserData>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -44,6 +46,7 @@ export type actionsTypes =
     | setTotalUsersCountActionType
     | setToggleIsFetchingActionType
     | setUserProfileActionType
+    | setUserDataActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////

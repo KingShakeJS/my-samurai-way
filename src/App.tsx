@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/header/Header";
 import NavBar from "./components/navBar/NavBar";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import RootProfileContainer from "./components/profile/ProfileClassContainer";
+import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
 
 
 // урок 60
@@ -17,7 +17,7 @@ function App() {
 
         <div className='app-wrapper'>
 
-            <Header/>
+            <RootHeaderContainer />
 
             <NavBar/>
 

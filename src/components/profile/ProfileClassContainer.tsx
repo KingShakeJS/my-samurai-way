@@ -4,7 +4,7 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {appStateType} from "../../redux/redux-store";
 import {setUserProfile} from "../../redux/reducers/profile-reducer";
-import {profileType, setUserProfileActionType} from "../../redux/store";
+import {profileType} from "../../redux/store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 // type ProfileClassContainerPT = {

@@ -6,3 +6,8 @@
 .Header img {
     height: 20px;
 }
+
+.loginBlock {
+    float: right;
+    color: darkblue;
+}
