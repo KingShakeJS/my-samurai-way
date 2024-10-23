@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import axios from "axios";
 import {usersType} from "../../redux/store";
 import UsersFC from "./UsersFC";
 import PreLoader from "../common/preLoader/PreLoader";
+import {userAPI} from "../../api/api";
 
 export type UsersClassPT = {
     state: usersType[]
@@ -23,29 +23,21 @@ class UsersClass extends Component<UsersClassPT> {
 
     componentDidMount() {
         this.props.setToggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-            {
-                withCredentials: true
-            })
-            .then(res => {
-                this.props.setTotalUsersCount(res.data.totalCount)
-                this.props.setUsers(res.data.items)
-                this.props.setToggleIsFetching(false)
-            })
+
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setTotalUsersCount(data.totalCount)
+            this.props.setUsers(data.items)
+            this.props.setToggleIsFetching(false)
+        })
     }
 
     onPageChanged = (p: number) => {
         this.props.setToggleIsFetching(true)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`,
-            {
-                withCredentials: true
-            })
-            .then(res => {
-                this.props.setUsers(res.data.items)
-                this.props.setToggleIsFetching(false)
-
-            })
+        userAPI.getUsers(p, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items)
+            this.props.setToggleIsFetching(false)
+        })
     }
     getUsers = () => {
         alert('заглушка')
