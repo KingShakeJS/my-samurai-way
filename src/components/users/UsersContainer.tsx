@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {appStateType} from "../../redux/redux-store";
 import {
     follow,
-    setCurrentPage,
+    setCurrentPage, setFollowingInProgress,
     setToggleIsFetching,
     setTotalUsersCount,
     setUsers,
@@ -17,6 +17,7 @@ type mapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[] | []
 }
 const mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
@@ -24,7 +25,8 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -37,6 +39,8 @@ const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setToggleIsFetching,
+    setFollowingInProgress
+
 
 })(UsersClass)
 

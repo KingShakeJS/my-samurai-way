@@ -13,6 +13,8 @@ type UsersFCPT = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     currentPage: number
+    setFollowingInProgress: (followingInProgressItem: number, isFetching: boolean) => void
+    followingInProgress: number[] | []
 }
 const UsersFC = ({
                      totalUsersCount,
@@ -21,7 +23,9 @@ const UsersFC = ({
                      currentPage,
                      unfollow,
                      follow,
-                     onPageChanged
+                     onPageChanged,
+                     setFollowingInProgress,
+                     followingInProgress
                  }: UsersFCPT) => {
     const pagesCount: number = Math.ceil(totalUsersCount / pageSize)
     const pages: Array<number> = []
@@ -60,8 +64,9 @@ const UsersFC = ({
                             <div>
                                 {u.followed
                                     ? <button
-
+                                        disabled={followingInProgress.some(id => id===u.id)}
                                         onClick={() => {
+                                            setFollowingInProgress(u.id, true)
                                             axios.delete(
                                                 `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
                                                 {
@@ -74,6 +79,9 @@ const UsersFC = ({
                                                     if (res.data.resultCode === 0) {
                                                         unfollow(u.id)
                                                     }
+                                                    setFollowingInProgress(u.id, false )
+
+
                                                 })
                                         }}
 
@@ -81,8 +89,12 @@ const UsersFC = ({
                                     </button>
 
                                     : <button
+                                        disabled={followingInProgress.some(id => id===u.id)}
+
 
                                         onClick={() => {
+                                    setFollowingInProgress(u.id, true)
+
                                             axios.post(
                                                 `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
                                                 {},
@@ -96,6 +108,8 @@ const UsersFC = ({
                                                     if (res.data.resultCode === 0) {
                                                         follow(u.id)
                                                     }
+                                                    setFollowingInProgress(u.id, false )
+
                                                 })
                                         }}
 

@@ -3,7 +3,7 @@ import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
 import {
     follow,
-    setCurrentPage,
+    setCurrentPage, setFollowingInProgress,
     setToggleIsFetching,
     setTotalUsersCount,
     setUsers,
@@ -34,6 +34,7 @@ export type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
 export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetching>
 export type setUserProfileActionType = ReturnType<typeof setUserProfile>
 export type setUserDataActionType = ReturnType<typeof setUserData>
+export type setFollowingInProgressActionType = ReturnType<typeof setFollowingInProgress>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -47,6 +48,7 @@ export type actionsTypes =
     | setToggleIsFetchingActionType
     | setUserProfileActionType
     | setUserDataActionType
+    | setFollowingInProgressActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -73,6 +75,7 @@ export type usersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: number[] | []
 }
 // типизвция вложенности второго уровня/////////////////////////////////////////////////////////////////
 

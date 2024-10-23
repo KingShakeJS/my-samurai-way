@@ -3,6 +3,7 @@ import {usersType} from "../../redux/store";
 import UsersFC from "./UsersFC";
 import PreLoader from "../common/preLoader/PreLoader";
 import {userAPI} from "../../api/api";
+import {setFollowingInProgress} from "../../redux/reducers/users-reducer";
 
 export type UsersClassPT = {
     state: usersType[]
@@ -16,7 +17,8 @@ export type UsersClassPT = {
     setTotalUsersCount: (currentPage: number) => void
     isFetching: boolean
     setToggleIsFetching: (isFetching: boolean) => void
-
+    setFollowingInProgress:(followingInProgressItem: number, isFetching: boolean)=> void
+    followingInProgress: number[] | []
 }
 
 class UsersClass extends Component<UsersClassPT> {
@@ -62,6 +64,8 @@ class UsersClass extends Component<UsersClassPT> {
                     totalUsersCount={this.props.totalUsersCount}
                     unfollow={this.props.unfollow}
                     onPageChanged={this.onPageChanged}
+                    setFollowingInProgress={this.props.setFollowingInProgress}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         )
