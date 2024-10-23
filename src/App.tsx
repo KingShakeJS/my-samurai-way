@@ -8,10 +8,13 @@ import RootProfileContainer from "./components/profile/ProfileClassContainer";
 import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
 
 
-// урок 65
+// урок 67
 
 
 function App() {
+
+
+
 
     return (
 

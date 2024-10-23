@@ -2,12 +2,13 @@ import {usersType} from "../../redux/store";
 import {connect} from "react-redux";
 import {appStateType} from "../../redux/redux-store";
 import {
-    follow,
-    setCurrentPage, setFollowingInProgress,
+    followThunkCreator,
+    getUsersThunkCreator,
+    setCurrentPage,
     setToggleIsFetching,
     setTotalUsersCount,
     setUsers,
-    unfollow
+    unFollowThunkCreator
 } from "../../redux/reducers/users-reducer";
 import UsersClass from "./UsersClass";
 
@@ -33,13 +34,13 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
 
 const UsersContainer = connect(mapStateToProps, {
 
-    follow,
-    unfollow,
+    followThunkCreator,
+    unFollowThunkCreator,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
     setToggleIsFetching,
-    setFollowingInProgress
+    getUsersThunkCreator
 
 
 })(UsersClass)

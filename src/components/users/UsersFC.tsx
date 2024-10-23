@@ -3,28 +3,29 @@ import s from "./Users.module.css";
 import userPhoto from "../../assets/images/ava.webp";
 import {usersType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 type UsersFCPT = {
     onPageChanged: (p: number) => void
     state: usersType[]
     pageSize: number
     totalUsersCount: number
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    followThunkCreator: (userId: number) => void
+    unFollowThunkCreator: (userId: number) => void
     currentPage: number
-    setFollowingInProgress: (followingInProgressItem: number, isFetching: boolean) => void
+
     followingInProgress: number[] | []
+
+
 }
 const UsersFC = ({
                      totalUsersCount,
                      state,
                      pageSize,
                      currentPage,
-                     unfollow,
-                     follow,
+                     unFollowThunkCreator,
+                     followThunkCreator,
                      onPageChanged,
-                     setFollowingInProgress,
+
                      followingInProgress
                  }: UsersFCPT) => {
     const pagesCount: number = Math.ceil(totalUsersCount / pageSize)
@@ -64,53 +65,19 @@ const UsersFC = ({
                             <div>
                                 {u.followed
                                     ? <button
-                                        disabled={followingInProgress.some(id => id===u.id)}
+                                        disabled={followingInProgress.some(id => id === u.id)}
                                         onClick={() => {
-                                            setFollowingInProgress(u.id, true)
-                                            axios.delete(
-                                                `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
-                                                {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        "API-KEY": '733dfb2b-ad38-4924-a41f-9ae9ca6660c4'
-                                                    }
-                                                })
-                                                .then(res => {
-                                                    if (res.data.resultCode === 0) {
-                                                        unfollow(u.id)
-                                                    }
-                                                    setFollowingInProgress(u.id, false )
-
-
-                                                })
-                                        }}
+                                            unFollowThunkCreator(u.id)}}
 
                                     >отписаться
                                     </button>
 
                                     : <button
-                                        disabled={followingInProgress.some(id => id===u.id)}
+                                        disabled={followingInProgress.some(id => id === u.id)}
 
 
                                         onClick={() => {
-                                    setFollowingInProgress(u.id, true)
-
-                                            axios.post(
-                                                `https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,
-                                                {},
-                                                {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        "API-KEY": '733dfb2b-ad38-4924-a41f-9ae9ca6660c4'
-                                                    }
-                                                })
-                                                .then(res => {
-                                                    if (res.data.resultCode === 0) {
-                                                        follow(u.id)
-                                                    }
-                                                    setFollowingInProgress(u.id, false )
-
-                                                })
+                                            followThunkCreator(u.id)
                                         }}
 
                                     >подписаться

@@ -2,44 +2,42 @@ import React, {Component} from "react";
 import {usersType} from "../../redux/store";
 import UsersFC from "./UsersFC";
 import PreLoader from "../common/preLoader/PreLoader";
-import {userAPI} from "../../api/api";
-import {setFollowingInProgress} from "../../redux/reducers/users-reducer";
+
 
 export type UsersClassPT = {
     state: usersType[]
     pageSize: number
     totalUsersCount: number
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    followThunkCreator: (userId: number) => void
+    unFollowThunkCreator: (userId: number) => void
     setUsers: (users: usersType[]) => void
     currentPage: number
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (currentPage: number) => void
     isFetching: boolean
     setToggleIsFetching: (isFetching: boolean) => void
-    setFollowingInProgress:(followingInProgressItem: number, isFetching: boolean)=> void
+
     followingInProgress: number[] | []
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
 class UsersClass extends Component<UsersClassPT> {
 
     componentDidMount() {
-        this.props.setToggleIsFetching(true)
-
-        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setTotalUsersCount(data.totalCount)
-            this.props.setUsers(data.items)
-            this.props.setToggleIsFetching(false)
-        })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (p: number) => {
-        this.props.setToggleIsFetching(true)
-        this.props.setCurrentPage(p)
-        userAPI.getUsers(p, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setToggleIsFetching(false)
-        })
+
+        this.props.getUsersThunkCreator(p, this.props.pageSize)
+
+
+        // this.props.setToggleIsFetching(true)
+        // this.props.setCurrentPage(p)
+        // userAPI.getUsers(p, this.props.pageSize).then(data => {
+        //     this.props.setUsers(data.items)
+        //     this.props.setToggleIsFetching(false)
+        // })
     }
     getUsers = () => {
         alert('заглушка')
@@ -60,12 +58,13 @@ class UsersClass extends Component<UsersClassPT> {
                     state={this.props.state}
                     currentPage={this.props.currentPage}
                     pageSize={this.props.pageSize}
-                    follow={this.props.follow}
+                    followThunkCreator={this.props.followThunkCreator}
                     totalUsersCount={this.props.totalUsersCount}
-                    unfollow={this.props.unfollow}
+                    unFollowThunkCreator={this.props.unFollowThunkCreator}
                     onPageChanged={this.onPageChanged}
-                    setFollowingInProgress={this.props.setFollowingInProgress}
+
                     followingInProgress={this.props.followingInProgress}
+
                 />
             </>
         )

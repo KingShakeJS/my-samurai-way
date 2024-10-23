@@ -1,4 +1,6 @@
 import {actionsTypes, usersPageType, usersType} from "../store";
+import {Dispatch} from "redux";
+import {userAPI} from "../../api/api";
 
 
 const FOLLOW = "FOLLOW"
@@ -85,4 +87,48 @@ export const setFollowingInProgress = (followingInProgressItem: number, isFetchi
     isFetching,
     followingInProgressItem
 } as const)
-export default usersReducer
+
+// thunks  ////////////////////////////////////////////
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<actionsTypes>) => {
+        dispatch(setToggleIsFetching(true))
+
+        userAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setTotalUsersCount(data.totalCount))
+            dispatch(setUsers(data.items))
+            dispatch(setToggleIsFetching(false))
+        })
+    }
+}
+
+export const followThunkCreator = (userId: number) => {
+    return (dispatch: Dispatch<actionsTypes>) => {
+        dispatch(setFollowingInProgress(userId, true))
+        userAPI.follow(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(follow(userId))
+                }
+                dispatch(setFollowingInProgress(userId, false))
+            })
+    }
+}
+
+export const unFollowThunkCreator = (userId: number) => {
+    return (dispatch: Dispatch<actionsTypes>) => {
+        dispatch(setFollowingInProgress(userId, true))
+
+        userAPI.unFollow(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(unfollow(userId))
+                }
+                dispatch(setFollowingInProgress(userId, false))
+
+
+            })
+    }
+
+}
+//////////////////////////////////////////////////////////
+    export default usersReducer
