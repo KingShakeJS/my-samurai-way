@@ -10,10 +10,10 @@ type DialogsPT = {
     state: dialogsPageType
     onSendMsgClick: () => void
     onNewMsgChange: (text: string) => void
-    isAuth: boolean
+
 
 }
-const Dialogs = ({state, onSendMsgClick, onNewMsgChange, isAuth}: DialogsPT) => {
+const Dialogs = ({state, onSendMsgClick, onNewMsgChange}: DialogsPT) => {
 
     const onSendMsgClickHandler = () => {
         onSendMsgClick()
@@ -22,9 +22,7 @@ const Dialogs = ({state, onSendMsgClick, onNewMsgChange, isAuth}: DialogsPT) => 
         onNewMsgChange(e.currentTarget.value)
     }
 
-    if (!isAuth){
-        return <Redirect to={'login'}/>
-    }
+
 
     return (
         <div className={s.Dialogs}>

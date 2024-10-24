@@ -11,13 +11,12 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 type ProfilePT = {
 
     profile: profileType | null
-    isAuth: boolean
+
 
 }
 
-const Profile = ({profile, isAuth}: ProfilePT) => {
+const Profile = ({profile}: ProfilePT) => {
 
-    if (!isAuth) return <Redirect to={'login'}/>
     return (
         <div>
             <ProfileInfo profile={profile}/>

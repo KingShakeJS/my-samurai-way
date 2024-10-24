@@ -11,6 +11,7 @@ import {
     unFollowThunkCreator
 } from "../../redux/reducers/users-reducer";
 import UsersClass from "./UsersClass";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type mapStateToPropsType = {
     state: usersType[]
@@ -31,6 +32,8 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
     }
 }
 
+const withRedirect  = withAuthRedirect(UsersClass)
+
 
 const UsersContainer = connect(mapStateToProps, {
 
@@ -43,7 +46,7 @@ const UsersContainer = connect(mapStateToProps, {
     getUsersThunkCreator
 
 
-})(UsersClass)
+})(withRedirect)
 
 
 export default UsersContainer;
