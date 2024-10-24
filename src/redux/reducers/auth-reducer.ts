@@ -1,4 +1,6 @@
 import {actionsTypes} from "../store";
+import {Dispatch} from "redux";
+import {authAPI} from "../../api/api";
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -39,3 +41,13 @@ export const setUserData = (userId: null | string | number, email: null | string
         type: SET_USER_DATA,
         data: {userId, email, login, isAuth}
     })
+
+export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch<actionsTypes>)=>{
+    authAPI.me()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                const {login, email, id} = res.data.data
+               dispatch(setUserData(id, email, login, true))
+            }
+        })
+}

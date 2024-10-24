@@ -8,7 +8,7 @@ import RootProfileContainer from "./components/profile/ProfileClassContainer";
 import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
 
 
-// урок 67
+// урок 68
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
 
-                <Route render={() => <RootProfileContainer/>} path={'/profile/:userId?'}/>
+                <Route render={() => <RootProfileContainer />} path={'/profile/:userId?'}/>
 
                 <Route render={() => <UsersContainer/>} path={'/users'}/>
 

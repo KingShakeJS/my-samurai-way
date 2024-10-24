@@ -8,11 +8,11 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 
 
 type ProfilePT = {
-    setUserProfile: (profile: profileType) => void
+
     profile: profileType | null
 }
 
-const Profile = ({setUserProfile, profile}: ProfilePT) => {
+const Profile = ({ profile}: ProfilePT) => {
     return (
         <div>
             <ProfileInfo profile={profile}/>

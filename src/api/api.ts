@@ -15,12 +15,22 @@ export const userAPI = {
             .then(res => res.data)
     },
     follow: (userId: number) => {
-        return   instance.post(`follow/${userId}`)
+        return instance.post(`follow/${userId}`)
     },
     unFollow: (userId: number) => {
-       return  instance.delete(`follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
     },
+    getProfile: (userId: string) => {
+        return instance.get(`profile/${userId}`)
+    }
 }
 
+
+export const authAPI = {
+    me: () => {
+        return instance.get(`auth/me`, {withCredentials: true})
+    },
+
+}
 
 
