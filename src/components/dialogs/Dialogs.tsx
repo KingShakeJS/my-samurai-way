@@ -3,20 +3,27 @@ import s from './Dialogs.module.css'
 import DialogItem from "./dialogItem/DialogItem";
 import Msg from "./msg/Msg";
 import {dialogsPageType,} from "../../redux/store";
+import {Redirect} from "react-router-dom";
 
 
 type DialogsPT = {
     state: dialogsPageType
     onSendMsgClick: () => void
     onNewMsgChange: (text: string) => void
+    isAuth: boolean
+
 }
-const Dialogs = ({state, onSendMsgClick, onNewMsgChange}: DialogsPT) => {
+const Dialogs = ({state, onSendMsgClick, onNewMsgChange, isAuth}: DialogsPT) => {
 
     const onSendMsgClickHandler = () => {
         onSendMsgClick()
     }
     const onNewMsgChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         onNewMsgChange(e.currentTarget.value)
+    }
+
+    if (!isAuth){
+        return <Redirect to={'login'}/>
     }
 
     return (

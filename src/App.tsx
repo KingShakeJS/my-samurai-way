@@ -6,9 +6,10 @@ import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import RootProfileContainer from "./components/profile/ProfileClassContainer";
 import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
+import {Login} from "./components/login/Login";
 
 
-// урок 68
+// урок 69
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
                 <Route render={() => <RootProfileContainer />} path={'/profile/:userId?'}/>
 
                 <Route render={() => <UsersContainer/>} path={'/users'}/>
+
+                <Route render={() => <Login/>} path={'/login'}/>
 
             </div>
 
