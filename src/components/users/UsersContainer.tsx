@@ -12,6 +12,8 @@ import {
 } from "../../redux/reducers/users-reducer";
 import UsersClass from "./UsersClass";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
+import React from "react";
 
 type mapStateToPropsType = {
     state: usersType[]
@@ -32,21 +34,26 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
     }
 }
 
-const withRedirect  = withAuthRedirect(UsersClass)
 
 
-const UsersContainer = connect(mapStateToProps, {
-
-    followThunkCreator,
-    unFollowThunkCreator,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setToggleIsFetching,
-    getUsersThunkCreator
 
 
-})(withRedirect)
 
 
-export default UsersContainer;
+
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {
+
+        followThunkCreator,
+        unFollowThunkCreator,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        setToggleIsFetching,
+        getUsersThunkCreator
+
+
+    }),
+    withAuthRedirect
+)(UsersClass)
