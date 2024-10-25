@@ -9,7 +9,7 @@ import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
 import {Login} from "./components/login/Login";
 
 
-// урок 71
+// урок 72
 
 
 function App() {
