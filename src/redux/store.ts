@@ -1,4 +1,4 @@
-import {addPostAC, setUserProfile, updateNewPostTextAC} from "./reducers/profile-reducer";
+import {addPostAC, setStatusAC, setUserProfile, updateNewPostTextAC} from "./reducers/profile-reducer";
 import {sendMsgAC, updateNewMsgValueAC} from "./reducers/dialogs-reducer";
 import {v1} from "uuid";
 import {
@@ -35,6 +35,7 @@ export type setToggleIsFetchingActionType = ReturnType<typeof setToggleIsFetchin
 export type setUserProfileActionType = ReturnType<typeof setUserProfile>
 export type setUserDataActionType = ReturnType<typeof setUserData>
 export type setFollowingInProgressActionType = ReturnType<typeof setFollowingInProgress>
+export type setStatusActionType = ReturnType<typeof setStatusAC>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -49,6 +50,7 @@ export type actionsTypes =
     | setUserProfileActionType
     | setUserDataActionType
     | setFollowingInProgressActionType
+    | setStatusActionType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
@@ -61,6 +63,8 @@ export type profilePageType = {
     inputValue: string
     posts: Array<potsType>
     profile: profileType | null
+    status: string
+
 }
 
 export type dialogsPageType = {

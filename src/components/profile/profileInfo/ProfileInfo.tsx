@@ -7,10 +7,12 @@ import {ProfileStatus} from "./profileStatus/ProfileStatus";
 
 type ProfileInfoPT = {
     profile: profileType | null
+    status: string
+    updateUserStatusThunkCreator : (status:string) => void
 
 }
 
-const Description = ({profile}:ProfileInfoPT) => {
+const Description = ({profile, status,updateUserStatusThunkCreator}:ProfileInfoPT) => {
     return (
         <>
             <div>
@@ -24,13 +26,14 @@ const Description = ({profile}:ProfileInfoPT) => {
                 ava + description
 
                 <ProfileStatus
-                    status={'ass'}
+                    status={status}
+                    updateUserStatusThunkCreator={updateUserStatusThunkCreator}
                 />
             </div>
         </>
     )
 }
-const ProfileInfo = ({profile}: ProfileInfoPT) => {
+const ProfileInfo = ({profile, status,updateUserStatusThunkCreator}: ProfileInfoPT) => {
 
 
     return (
@@ -38,7 +41,11 @@ const ProfileInfo = ({profile}: ProfileInfoPT) => {
             {
                 !profile
                     ? <PreLoader/>
-                    : <Description profile={profile}/>
+                    : <Description
+                    status={status}
+                        profile={profile}
+                    updateUserStatusThunkCreator={updateUserStatusThunkCreator}
+                    />
             }
         </>
     );

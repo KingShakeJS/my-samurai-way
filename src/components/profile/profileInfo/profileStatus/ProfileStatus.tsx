@@ -1,12 +1,18 @@
 import * as React from 'react';
+import {ChangeEvent} from 'react';
 
 type ProfileStatusProps = {
     status: string
+    updateUserStatusThunkCreator: (status: string) => void
+
 };
 
 export class ProfileStatus extends React.Component<ProfileStatusProps> {
+
+
     state = {
         editMode: false,
+        status: this.props.status
     }
 
     activateEditMode = () => {
@@ -14,10 +20,15 @@ export class ProfileStatus extends React.Component<ProfileStatusProps> {
     }
     deactivateEditMode = () => {
         this.setState({editMode: false})
+        this.props.updateUserStatusThunkCreator(this.state.status)
+    }
+    onStatusChange = (e:ChangeEvent<HTMLInputElement>) => {
+        this.setState({status: e.currentTarget.value})
     }
 
+
     render() {
-        let {status} = this.props;
+
 
 
         return (
@@ -29,9 +40,11 @@ export class ProfileStatus extends React.Component<ProfileStatusProps> {
                         ? (
                             <div>
                                 <input
+
                                     autoFocus={true}
                                     onBlur={this.deactivateEditMode}
-                                    value={status}
+                                    value={this.state.status}
+                                    onChange={this.onStatusChange}
                                     type="text"
                                 />
                             </div>
@@ -40,7 +53,7 @@ export class ProfileStatus extends React.Component<ProfileStatusProps> {
                             <div>
                                 <span
                                     onDoubleClick={this.activateEditMode}
-                                >{status}</span>
+                                >{this.props.status || '---__---'}</span>
                             </div>
                         )
                 }

@@ -11,15 +11,21 @@ export const OBLOJKA = 'https://vk-oblozhki.ru/photos/big/shestiugol-niki-render
 type ProfilePT = {
 
     profile: profileType | null
+    status: string
+    updateUserStatusThunkCreator : (status:string) => void
 
 
 }
 
-const Profile = ({profile}: ProfilePT) => {
+const Profile = ({profile, status,updateUserStatusThunkCreator}: ProfilePT) => {
 
     return (
         <div>
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo
+                status={status}
+                profile={profile}
+            updateUserStatusThunkCreator={updateUserStatusThunkCreator}/>
+
             <MyPostsContainer/>
         </div>
     );

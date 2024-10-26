@@ -21,7 +21,8 @@ export const userAPI = {
         return instance.delete(`follow/${userId}`)
     },
     getProfile: (userId: string) => {
-        return instance.get(`profile/${userId}`)
+        console.warn('используется устаревший метод, используй "profileAPI.getProfile" ')
+        return profileAPI.getProfile(userId)
     }
 }
 
@@ -33,4 +34,17 @@ export const authAPI = {
 
 }
 
+export const profileAPI = {
+    getProfile: (userId: string) => {
+        return instance.get(`profile/${userId}`)
+    },
+    getStatus: (userId: string) => {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus: (status: string) => {
+        return instance.put(`profile/status`, {
+            status: status
+        })
+    },
+}
 
