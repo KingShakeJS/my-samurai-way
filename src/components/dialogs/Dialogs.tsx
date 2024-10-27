@@ -4,22 +4,26 @@ import DialogItem from "./dialogItem/DialogItem";
 import Msg from "./msg/Msg";
 import {dialogsPageType,} from "../../redux/store";
 import {Redirect} from "react-router-dom";
+import {AddMsgFormDataType, ReduxAddMsgForm} from "../common/form/AddMsgForm";
 
 
 type DialogsPT = {
     state: dialogsPageType
-    onSendMsgClick: () => void
+    onSendMsgClick: (value: string) => void
     onNewMsgChange: (text: string) => void
 
 
 }
 const Dialogs = ({state, onSendMsgClick, onNewMsgChange}: DialogsPT) => {
 
-    const onSendMsgClickHandler = () => {
-        onSendMsgClick()
-    }
+
     const onNewMsgChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         onNewMsgChange(e.currentTarget.value)
+    }
+    
+    const addNewMsg = (formData:AddMsgFormDataType) => {
+        console.log(formData.newMsgBody)
+        onSendMsgClick(formData.newMsgBody)
     }
 
 
@@ -41,21 +45,9 @@ const Dialogs = ({state, onSendMsgClick, onNewMsgChange}: DialogsPT) => {
                     }
                 </div>
 
-                <div>
-                    <div>
-                        <textarea
-                            value={state.newMsgValue}
-                            onChange={onNewMsgChangeHandler}
-                            placeholder={'введите сообщение'}
-                        ></textarea>
-                    </div>
-                    <div>
-                        <button
-                            onClick={onSendMsgClickHandler}
-                        >Отправить
-                        </button>
-                    </div>
-                </div>
+                <ReduxAddMsgForm
+                    onSubmit={addNewMsg}
+                />
 
             </div>
 

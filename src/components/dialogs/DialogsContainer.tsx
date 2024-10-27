@@ -6,6 +6,7 @@ import {compose, Dispatch} from "redux";
 import {sendMsgAC, updateNewMsgValueAC} from "../../redux/reducers/dialogs-reducer";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import React from "react";
+import {AddMsgFormDataType} from "../common/form/AddMsgForm";
 
 type mapStateToPropsType = {
     state: dialogsPageType
@@ -13,7 +14,7 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    onSendMsgClick: () => void
+    onSendMsgClick: (value: string) => void
     onNewMsgChange: (text: string) => void
 }
 const mapStateToProps = (state: appStateType): mapStateToPropsType => {
@@ -26,8 +27,8 @@ const mapStateToProps = (state: appStateType): mapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        onSendMsgClick: () => {
-            dispatch(sendMsgAC())
+        onSendMsgClick: (value: string) => {
+            dispatch(sendMsgAC(value))
         },
 
         onNewMsgChange: (text: string) => {

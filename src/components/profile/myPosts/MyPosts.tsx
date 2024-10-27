@@ -2,9 +2,10 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
 import {profilePageType} from "../../../redux/store";
+import {AddNewPostFormDataType, ReduxAddNewPostForm} from "../../common/form/AddNewPostForm";
 
 type MyPostsPT = {
-    addPost: () => void
+    addPost: (value: string) => void
     onPostChange: (text: string) => void
     state: profilePageType
 }
@@ -12,33 +13,20 @@ type MyPostsPT = {
 
 const MyPosts = ({onPostChange, addPost, state}: MyPostsPT) => {
 
-    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const text = e.currentTarget.value
-        onPostChange(text)
-    }
 
-    const addPostHandler = () => {
-        addPost()
+
+    const addPostHandler = (formData:AddNewPostFormDataType) => {
+        console.log(formData.addNewPost)
+        addPost(formData.addNewPost)
     }
 
     return (
         <div className={s.postsBlock}>
 
             <h3>MyPosts</h3>
-            <div>
-                <div>
-                    <textarea
-                        value={state.inputValue}
-                        onChange={onPostChangeHandler}
-                    ></textarea>
-                </div>
-                <div>
-                    <button
-                        onClick={addPostHandler}
-                    >добавить пост
-                    </button>
-                </div>
-            </div>
+            <ReduxAddNewPostForm
+                onSubmit={addPostHandler}
+            />
 
             <div className={s.posts}>
                 {

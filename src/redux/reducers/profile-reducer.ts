@@ -25,14 +25,10 @@ export const profileReducer = (state: profilePageType = initialState, action: ac
         case ADD_POST:
             return {
                 ...state,
-                inputValue: '',
-                posts: [...state.posts, {id: 33, msg: state.inputValue, likes: 0}]
+
+                posts: [...state.posts, {id: 33, msg: action.msg, likes: 10}]
             }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                inputValue: action.newText
-            }
+
         case SET_USER_PROFILE:
             return {
                 ...state,
@@ -51,9 +47,10 @@ export const profileReducer = (state: profilePageType = initialState, action: ac
 
 
 
-export const addPostAC = () => {
+export const addPostAC = (msg:string) => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        msg
     } as const
 }
 export const setUserProfile = (profile: profileType) => ({

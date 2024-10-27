@@ -12,19 +12,19 @@ type ProfilePT = {
 
     profile: profileType | null
     status: string
-    updateUserStatusThunkCreator : (status:string) => void
+    updateUserStatusThunkCreator: (status: string) => void
 
 
 }
 
-const Profile = ({profile, status,updateUserStatusThunkCreator}: ProfilePT) => {
+const Profile = ({profile, status, updateUserStatusThunkCreator}: ProfilePT) => {
 
     return (
         <div>
             <ProfileInfo
                 status={status}
                 profile={profile}
-            updateUserStatusThunkCreator={updateUserStatusThunkCreator}/>
+                updateUserStatusThunkCreator={updateUserStatusThunkCreator}/>
 
             <MyPostsContainer/>
         </div>
