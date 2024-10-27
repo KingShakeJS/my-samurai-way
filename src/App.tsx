@@ -9,19 +9,17 @@ import {RootHeaderContainer} from "./components/header/HeaderClassContainer";
 import {Login} from "./components/login/Login";
 
 
-// урок 76
+// урок 78
 
 
 function App() {
-
-
 
 
     return (
 
         <div className='app-wrapper'>
 
-            <RootHeaderContainer />
+            <RootHeaderContainer/>
 
             <NavBar/>
 
@@ -29,7 +27,7 @@ function App() {
 
                 <Route render={() => <DialogsContainer/>} path={'/dialogs'}/>
 
-                <Route render={() => <RootProfileContainer />} path={'/profile/:userId?'}/>
+                <Route render={() => <RootProfileContainer/>} path={'/profile/:userId?'}/>
 
                 <Route render={() => <UsersContainer/>} path={'/users'}/>
 

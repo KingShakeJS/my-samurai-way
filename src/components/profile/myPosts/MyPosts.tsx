@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./post/Post";
 import {profilePageType} from "../../../redux/store";
-import {AddNewPostFormDataType, ReduxAddNewPostForm} from "../../common/form/AddNewPostForm";
+import {AddNewPostFormDataType, ReduxAddNewPostForm} from "../../form/AddNewPostForm";
 
 type MyPostsPT = {
     addPost: (value: string) => void

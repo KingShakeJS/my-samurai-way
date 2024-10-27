@@ -4,7 +4,7 @@ import DialogItem from "./dialogItem/DialogItem";
 import Msg from "./msg/Msg";
 import {dialogsPageType,} from "../../redux/store";
 import {Redirect} from "react-router-dom";
-import {AddMsgFormDataType, ReduxAddMsgForm} from "../common/form/AddMsgForm";
+import {AddMsgFormDataType, ReduxAddMsgForm} from "../form/AddMsgForm";
 
 
 type DialogsPT = {

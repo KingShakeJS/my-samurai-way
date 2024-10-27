@@ -6,7 +6,7 @@ import {compose, Dispatch} from "redux";
 import {sendMsgAC, updateNewMsgValueAC} from "../../redux/reducers/dialogs-reducer";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import React from "react";
-import {AddMsgFormDataType} from "../common/form/AddMsgForm";
+import {AddMsgFormDataType} from "../form/AddMsgForm";
 
 type mapStateToPropsType = {
     state: dialogsPageType
