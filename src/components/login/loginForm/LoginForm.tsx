@@ -3,6 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {FC} from "react";
 import {Input} from "../../common/formsControls/FormsControls";
 import {maxLengthCreator, requiredFields} from "../../../utils/validators/validators";
+import s from './../../common/formsControls/FormsControls.module.css'
 
 type Props = {
     onSubmitHandler: (formData: FormData) => void
@@ -16,7 +17,7 @@ export type FormData = {
 }
 const max = maxLengthCreator(30)
 
-export const LoginForm: FC<InjectedFormProps<FormData>> = ({handleSubmit}) => {
+export const LoginForm: FC<InjectedFormProps<FormData>> = ({handleSubmit, error}) => {
 
     return (
         <form
@@ -49,6 +50,11 @@ export const LoginForm: FC<InjectedFormProps<FormData>> = ({handleSubmit}) => {
                     type="checkbox"
                 /> remember me
             </div>
+            {
+                error && <div className={s.formControlSummaryErr}>{error}</div>
+
+            }
+
 
             <div>
                 <button>Зарегистрироваться</button>

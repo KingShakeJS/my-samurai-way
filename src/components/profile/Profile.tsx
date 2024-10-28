@@ -15,6 +15,7 @@ type ProfilePT = {
     updateUserStatusThunkCreator: (status: string) => void
 
 
+
 }
 
 const Profile = ({profile, status, updateUserStatusThunkCreator}: ProfilePT) => {
