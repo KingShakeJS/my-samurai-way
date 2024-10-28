@@ -14,7 +14,7 @@ export type FormData = {
     rememberMe: boolean
 
 }
-const max = maxLengthCreator(10)
+const max = maxLengthCreator(30)
 
 export const LoginForm: FC<InjectedFormProps<FormData>> = ({handleSubmit}) => {
 
