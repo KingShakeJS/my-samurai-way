@@ -55,5 +55,5 @@ export default compose<React.ComponentType>(
 
 
     }),
-    withAuthRedirect
+    // withAuthRedirect
 )(UsersClass)

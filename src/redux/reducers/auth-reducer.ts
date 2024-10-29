@@ -45,13 +45,14 @@ export const setUserData = (userId: null | string | number, email: null | string
 
 
 export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch<actionsTypes>) => {
-    authAPI.me()
+  return   authAPI.me()
         .then(res => {
             if (res.data.resultCode === 0) {
                 const {login, email, id} = res.data.data
                 dispatch(setUserData(id, email, login, true))
             }
         })
+
 }
 
 export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch<any>) => {

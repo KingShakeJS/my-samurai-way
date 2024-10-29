@@ -22,8 +22,8 @@ type mapStateToPropsType = {
 }
 type mapDispatchToPropsType = {
     getUserProfileThunkCreator: (userId: string) => void
-    getUserStatusThunkCreator : (userId:string) => void
-    updateUserStatusThunkCreator : (status:string) => void
+    getUserStatusThunkCreator: (userId: string) => void
+    updateUserStatusThunkCreator: (status: string) => void
 
 }
 
@@ -38,7 +38,10 @@ class ProfileClassContainer extends Component<routProsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId=this.props.myId
+            userId = this.props.myId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
 
         this.props.getUserProfileThunkCreator(userId)
@@ -60,7 +63,7 @@ class ProfileClassContainer extends Component<routProsType> {
 const mapStateToProps = (state: appStateType): mapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status:  state.profilePage.status,
+        status: state.profilePage.status,
         myId: state.auth.userId,
         isAuth: state.auth.isAuth
 

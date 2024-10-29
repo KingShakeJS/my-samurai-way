@@ -10,6 +10,7 @@ import {
     unfollow
 } from "./reducers/users-reducer";
 import {setUserData} from "./reducers/auth-reducer";
+import {initializedSuccess} from "./reducers/app-reducer";
 
 
 export type storeType = {
@@ -36,6 +37,7 @@ export type setUserProfileActionType = ReturnType<typeof setUserProfile>
 export type setUserDataActionType = ReturnType<typeof setUserData>
 export type setFollowingInProgressActionType = ReturnType<typeof setFollowingInProgress>
 export type setStatusActionType = ReturnType<typeof setStatusAC>
+export type initializedSuccessType = ReturnType<typeof initializedSuccess>
 export type actionsTypes =
     addPostActionType
     | updateNewPostTextActionType
@@ -51,6 +53,7 @@ export type actionsTypes =
     | setUserDataActionType
     | setFollowingInProgressActionType
     | setStatusActionType
+    | initializedSuccessType
 
 
 // типизация всего state //////////////////////////////////////////////////////////////////////////////
