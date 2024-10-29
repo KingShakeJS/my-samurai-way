@@ -14,7 +14,7 @@ import {appStateType} from "./redux/redux-store";
 import PreLoader from "./components/common/preLoader/PreLoader";
 
 
-// урок 81
+// урок 82
 type AppType={
     initializeApp:()=>void
     initialized: boolean
